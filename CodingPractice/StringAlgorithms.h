@@ -18,16 +18,21 @@ public:
     
     bool AreAllCharactersUnique( const char* inString, int32_t size );
     char* ReverseString( const char* inString);
+    void ReverseStringInplace( char* inString );
+    void RemoveAllDuplicateCharsNoExtraBuffer( string& inString );
    
 private:
     void TestAreAllCharactersUnique( void );
     void TestReverseString( void );
+    void TestReverseStringInplace( void );
 };
 
 
 void StringAlgorithms::TestAll( void )
 {
     TestAreAllCharactersUnique();
+    TestReverseString();
+    TestReverseStringInplace();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -37,7 +42,7 @@ void StringAlgorithms::TestAreAllCharactersUnique( void )
     char* tests[] = { t1, t2 };
     bool expected[] = { true, false };
 
-    cout << ">>>> ARE ALL CHARACTERS UNIQUE <<<<";
+    cout << ">>>> ARE ALL CHARACTERS UNIQUE <<<<" << endl;
 
     for( int i = 0; i < 2; i++ )
     {
@@ -55,13 +60,34 @@ void StringAlgorithms::TestReverseString( void )
     char* tests[] = { t1, t2 };
     char* expected[] = { e1, e2 };
 
-    cout << ">>>> ARE ALL CHARACTERS UNIQUE <<<<";
+    cout << ">>>> REVERSE STRING <<<<" << endl;
 
     for( int i = 0; i < 2; i++ )
     {
         char* reverseString = ReverseString( tests[i] ); 
         cout << "Test = " << tests[i] << endl << "Expected = " << expected[i] << endl << "Result   = " << reverseString << endl << endl;
         delete[] reverseString;
+    }
+}
+
+
+void StringAlgorithms::TestReverseStringInplace( void )
+{
+    char t1[] = "abc";
+    char t2[] = "abcd";
+    char* e1 = "cba";
+    char* e2 = "dcba";
+
+    char* tests[] = { t1, t2 };
+    char* expected[] = { e1, e2 };
+
+    cout << ">>>> REVERSE STRING INPLACE <<<<" << endl;
+
+    for( int i = 0; i < 2; i++ )
+    {
+        cout << "Test = " << tests[i] << endl << "Expected = " << expected[i] << endl << "Result   = ";
+        ReverseStringInplace( tests[i] ); 
+        cout << tests[i] << endl << endl;
     }
 }
 
@@ -97,6 +123,12 @@ bool StringAlgorithms::AreAllCharactersUnique( const char* inString, int32_t siz
 * "abc\0" array size == 4, strlen = 3
 * since returning new string dont need swap
 * outString[x] = inString[length - x]
+* 
+* runtime = O(N) 
+* This increases linearly with the size of the string
+*
+* memory requirements = O(N)
+* This algorithm returns a string the same size as the input string
 */
 char* StringAlgorithms::ReverseString( const char* inString )
 {
@@ -107,12 +139,47 @@ char* StringAlgorithms::ReverseString( const char* inString )
     /* evaluate and then decrement */
     for( int i = 0; i < length; i++ )
     {
-        reversedString[ i ] = inString[ length - i ];
+        reversedString[ i ] = inString[ length - i - 1 ];
     }
 
-    reversedString[length] = '/0';
+    reversedString[length] = '\0';
 
     return reversedString;
+}
+
+/***
+*
+*This function reversess the string as an inplace
+*
+*
+*
+*/
+
+void StringAlgorithms::ReverseStringInplace( char* inString )
+{
+    int32_t length = strlen( inString );
+
+    char tempChar;
+    char* ptrTail = &inString[0];
+    char* ptrHead = &inString[length - 1];
+
+    /* "ab" length = 2 */
+    /* lh = l /2 = 1, */
+
+    while( ptrTail < ptrHead )
+    {
+        tempChar = *ptrTail;
+        *ptrTail++ = *ptrHead;
+        *ptrHead-- = tempChar;
+    }
+
+}
+
+void StringAlgorithms::RemoveAllDuplicateCharsNoExtraBuffer( string& inString )
+{
+    char swapTemp;
+
+
 }
 
 #endif // !STRING_ALGORITHMS_H__
