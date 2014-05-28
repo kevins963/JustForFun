@@ -80,6 +80,7 @@
     <ClInclude Include="GraphNode.h" />
     <ClInclude Include="Heapsort.h" />
     <ClInclude Include="IVehicle.h" />
+    <ClInclude Include="LinkedListAlgorithms.h" />
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="MainClass.h" />
     <ClInclude Include="Malloc.h" />

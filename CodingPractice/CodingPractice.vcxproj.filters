@@ -55,6 +55,12 @@
     <Filter Include="String">
       <UniqueIdentifier>{7bffed10-0162-4557-bd6d-143017b298f7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NewFilter1">
+      <UniqueIdentifier>{746bc73a-01f3-438c-9a7a-39246273daa7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LinkedList">
+      <UniqueIdentifier>{b40d26a2-f421-4a11-a650-f0adc2af7f1e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainClass.h">
@@ -152,6 +158,9 @@
     </ClInclude>
     <ClInclude Include="StringAlgorithms.h">
       <Filter>String</Filter>
+    </ClInclude>
+    <ClInclude Include="LinkedListAlgorithms.h">
+      <Filter>LinkedList</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

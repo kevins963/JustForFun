@@ -13,6 +13,7 @@
 #include "Fibinocci.h"
 #include "Heapsort.h"
 #include "StringAlgorithms.h"
+#include "LinkedListAlgorithms.h"
 
 using namespace std;
 
@@ -69,6 +70,9 @@ MainClass::MainClass(void)
 
     StringAlgorithms strAlg;
     strAlg.TestAll();
+
+	LinkedListAlgorithms llAlg;
+	llAlg.TestAll();
 }
 
 void MainClass::RunGraphs()

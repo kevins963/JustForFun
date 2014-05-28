@@ -4,6 +4,7 @@
 #include <iostream>
 #include <map>
 #include <set>
+#include <algorithm>
 #include <stdint.h>
 
 using namespace std;
@@ -25,6 +26,7 @@ private:
     void TestAreAllCharactersUnique( void );
     void TestReverseString( void );
     void TestReverseStringInplace( void );
+	void TestRemoveAllDuplicateCharsNoExtraBuffer( void );
 };
 
 
@@ -33,6 +35,7 @@ void StringAlgorithms::TestAll( void )
     TestAreAllCharactersUnique();
     TestReverseString();
     TestReverseStringInplace();
+	TestRemoveAllDuplicateCharsNoExtraBuffer();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -70,7 +73,6 @@ void StringAlgorithms::TestReverseString( void )
     }
 }
 
-
 void StringAlgorithms::TestReverseStringInplace( void )
 {
     char t1[] = "abc";
@@ -87,6 +89,26 @@ void StringAlgorithms::TestReverseStringInplace( void )
     {
         cout << "Test = " << tests[i] << endl << "Expected = " << expected[i] << endl << "Result   = ";
         ReverseStringInplace( tests[i] ); 
+        cout << tests[i] << endl << endl;
+    }
+}
+
+void StringAlgorithms::TestRemoveAllDuplicateCharsNoExtraBuffer( void )
+{
+	string t1( "abc" );
+	string t2( "aababccddaabbccdd" );
+    string e1("abc");
+    string e2("abcd");
+
+    string tests[] = { t1, t2 };
+    string expected[] = { e1, e2 };
+
+    cout << ">>>> REMOVE ALL DUPLICATES FROM STRING <<<<" << endl;
+
+    for( int i = 0; i < 2; i++ )
+    {
+        cout << "Test = " << tests[i] << endl << "Expected = " << expected[i] << endl << "Result   = ";
+        RemoveAllDuplicateCharsNoExtraBuffer( tests[i] ); 
         cout << tests[i] << endl << endl;
     }
 }
@@ -177,9 +199,31 @@ void StringAlgorithms::ReverseStringInplace( char* inString )
 
 void StringAlgorithms::RemoveAllDuplicateCharsNoExtraBuffer( string& inString )
 {
-    char swapTemp;
+	
+    int outStringLength;
+	bool found;
+	
+	outStringLength = 1;
+	for( int i = 1; i < inString.length(); i++ )
+	{
+		found = false;
 
+		for( int j = 0; j < i; j++ )
+		{
+			if( inString[j] == inString[i] )
+			{
+				found = true;
+			}
+		}
 
+		if( !found )
+		{
+			swap( inString[i], inString[outStringLength] );
+			outStringLength++;
+		}
+	}
+
+	inString.resize( outStringLength );
 }
 
 #endif // !STRING_ALGORITHMS_H__
