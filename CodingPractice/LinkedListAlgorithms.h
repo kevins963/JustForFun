@@ -17,6 +17,7 @@ public:
 
 	ListNode* FindNthElementFromEnd( ListNode* list, int nthFromEnd );
 	void RemoveDuplicates( ListNode* list );
+	ListNode* AddNumbersTogether( ListNode* node1, ListNode* node2 );
 
 	ListNode* CreateListFromArray( const int* elements, int count );
 	void DeleteList( ListNode* list );
@@ -199,10 +200,6 @@ ListNode* LinkedListAlgorithms::CreateListFromArray( const int* elements, int co
 		if( currentNode == 0 )
 		{
 			currentNode = new ListNode( *elements );
-			startNode = currentNode;
-		}
-		else
-		{
 			currentNode->SetNextNode( new ListNode( *elements ) );
 			currentNode = currentNode->GetNextNode();
 		}
@@ -212,6 +209,61 @@ ListNode* LinkedListAlgorithms::CreateListFromArray( const int* elements, int co
 
 	return startNode;
 }
+
+/*
+* Create function that take in two linked list each representing a number and add them together.
+* The numbers are stored in reversed order
+*Ex:345+456 -> {5,4,3}+{6,5,4} = {1,0,8} -> 801
+* Go through each number and add them together keeping the carry over
+*/
+ListNode* LinkedListAlgorithms::AddNumbersTogether( ListNode* node1, ListNode* node2 )
+{
+	ListNode* head;
+	ListNode* sum;
+	int carryOver = 0;
+	int value1 = 0;
+	int value2 = 0;
+
+	/* Go through each number */
+	while( node1 || node2 )
+	{
+		if( node1 )
+		{
+			value1 = node1->GetData();
+			node1 = node1->GetNextNode();
+		}
+
+		if( node2 )
+		{
+			value2 = node2->GetData();
+			node2 = node2->GetNextNode();
+		}
+
+		if( !sum )
+		{
+			sum = new ListNode( ( value1 + value2 ) % 10 );
+			head = sum;
+		}
+		else
+		{
+			sum->SetNextNode( new ListNode( ( value1 + value2 ) % 10 ) + carryOver );
+			sum = sum->GetNextNode();
+		}
+
+		carryOver = ( value1 + value2  >= 10 ) ? 1 : 0;
+		value1 = 0;
+		value2 = 0;
+	}
+
+	if( carryOver ) 
+	{
+		sum->SetNextNode( new ListNode( carryOver );
+		sum = sum->GetNextNode();
+	}
+
+	return head;
+}
+
 
 void LinkedListAlgorithms::DeleteList( ListNode* list )
 {
