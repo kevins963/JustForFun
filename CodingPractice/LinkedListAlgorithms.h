@@ -2,6 +2,7 @@
 #define LINKED_LIST_ALGORITHMS_H__
 
 #include "ListNode.h"
+#include "Utilities.h"
 
 class LinkedListAlgorithms
 {
@@ -12,13 +13,13 @@ public:
 	void TestAll( void );
 	void TestFindNthFromLastElemenet( ListNode* list );
 	void TestRemoveDuplicates( void );
+    void TestCreateList( void );
 
 	ListNode* FindNthElementFromEnd( ListNode* list, int nthFromEnd );
 	void RemoveDuplicates( ListNode* list );
 
 	ListNode* CreateListFromArray( const int* elements, int count );
 	void DeleteList( ListNode* list );
-	void PrintList( ListNode* list );
 
 private:
 };
@@ -35,6 +36,8 @@ void LinkedListAlgorithms::TestAll( void )
 	node2.SetNextNode( &node3 );
 
 	TestFindNthFromLastElemenet( &node );
+    TestRemoveDuplicates();
+    TestCreateList();
 }
 
 void LinkedListAlgorithms::TestFindNthFromLastElemenet( ListNode* list )
@@ -61,7 +64,20 @@ void LinkedListAlgorithms::TestFindNthFromLastElemenet( ListNode* list )
 
 void LinkedListAlgorithms::TestRemoveDuplicates( void )
 {
-	
+	int t1[] = {1,1,1,2,2,2,1,1,1,2,2,2};
+    int e1[] = {1,2};
+    ListNode* n1 = CreateListFromArray( t1, sizeof( t1) / sizeof( int ) );
+
+    cout << "<<<< Test Remove Duplicates" << endl;
+
+    RemoveDuplicates( n1 );
+
+    cout << "Test     = ";
+    PrintArray( t1, 0, sizeof( t1 ) / sizeof( int ), true );
+    cout << "Expected = ";
+    PrintArray( e1, 0, sizeof( e1 ) / sizeof( int ), true );
+    cout << "Results  = ";
+    PrintList( n1, true );
 }
 /*
 * To get this one count n Pointers and then start another pointer n behind the head
@@ -97,6 +113,23 @@ ListNode * LinkedListAlgorithms::FindNthElementFromEnd( ListNode* list, int nthF
 	return tailPtr;
 }
 
+void LinkedListAlgorithms::TestCreateList( void )
+{
+    int t1[] = {1, 2, 3, 4, 5};
+    int e1[] = {1, 2, 3, 4, 5};
+
+    ListNode* list = CreateListFromArray( t1, 5 );
+
+    cout < ">>>> Create List Test";
+
+    cout << "Result = ";
+    PrintArray( t1, 0, 5, true );
+    cout << "Expected = ";
+    PrintArray( e1, 0, 5, true ); 
+    cout << "Returned = ";
+    PrintList( list, true );
+}
+
 /*
 * This will remove all duplicate data in a list
 *
@@ -120,7 +153,7 @@ void LinkedListAlgorithms::RemoveDuplicates( ListNode* list )
 	
 	currentNode = list;
 
-	while( currentNode->GetNextNode() == 0 )
+	while( currentNode->GetNextNode() )
 	{
 		/* itr = cur 
 		* validatingNode = itr->next;
@@ -133,7 +166,7 @@ void LinkedListAlgorithms::RemoveDuplicates( ListNode* list )
 		
 		ListNode* iteratorNode = currentNode;
 
-		while( iteratorNode->GetNextNode() != 0 )
+		while( iteratorNode->GetNextNode() )
 		{
 			ListNode* validatingNode = iteratorNode->GetNextNode();
 
@@ -145,23 +178,21 @@ void LinkedListAlgorithms::RemoveDuplicates( ListNode* list )
 			}
 			else
 			{
-				iteratorNode->SetNextNode( iteratorNode->GetNextNode() );
+				iteratorNode = iteratorNode->GetNextNode();
 			}
 		}
 
 		if( currentNode->GetNextNode() )
 		{
-			currentNode->SetNextNode( currentNode->GetNextNode() );
-	
+			currentNode = currentNode->GetNextNode();
 		}
 	}
 }
 	
 ListNode* LinkedListAlgorithms::CreateListFromArray( const int* elements, int count )
 {
-		
-	ListNode* startNode;
-	ListNode* currentNode;
+	ListNode* startNode = 0;
+	ListNode* currentNode = 0;
 
 	while( count-- )
 	{
@@ -175,7 +206,7 @@ ListNode* LinkedListAlgorithms::CreateListFromArray( const int* elements, int co
 			currentNode->SetNextNode( new ListNode( *elements ) );
 			currentNode = currentNode->GetNextNode();
 		}
-		
+
 		elements++;
 	}
 
@@ -191,21 +222,5 @@ void LinkedListAlgorithms::DeleteList( ListNode* list )
 	}
 }
 
-void LinkedListAlgorithms::PrintList( ListNode* list )
-{
-	ListNode* printNode = list;
-
-	cout << "[ ";
-	
-	while( printNode != 0 )
-	{
-		cout << printNode->GetData() << ", ";
-	}
-
-	cout << " ]";
-
-
-	while(
-}
 
 #endif
