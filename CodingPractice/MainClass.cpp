@@ -14,6 +14,7 @@
 #include "Heapsort.h"
 #include "StringAlgorithms.h"
 #include "LinkedListAlgorithms.h"
+#include "RecursionAlgorithms.h"
 
 using namespace std;
 
@@ -73,6 +74,9 @@ MainClass::MainClass(void)
 
 	LinkedListAlgorithms llAlg;
 	llAlg.TestAll();
+
+	RecursionAlgorithms recursionAlgs;
+	recursionAlgs.TestAll();
 }
 
 void MainClass::RunGraphs()

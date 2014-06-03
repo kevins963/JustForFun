@@ -61,6 +61,9 @@
     <Filter Include="LinkedList">
       <UniqueIdentifier>{b40d26a2-f421-4a11-a650-f0adc2af7f1e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Recursion">
+      <UniqueIdentifier>{6fca39f7-bdc7-4659-83e5-36a708d6e4ff}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainClass.h">
@@ -161,6 +164,9 @@
     </ClInclude>
     <ClInclude Include="LinkedListAlgorithms.h">
       <Filter>LinkedList</Filter>
+    </ClInclude>
+    <ClInclude Include="RecursionAlgorithms.h">
+      <Filter>Recursion</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

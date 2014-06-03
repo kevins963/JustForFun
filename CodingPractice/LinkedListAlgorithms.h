@@ -14,6 +14,7 @@ public:
 	void TestFindNthFromLastElemenet( ListNode* list );
 	void TestRemoveDuplicates( void );
     void TestCreateList( void );
+	void TestAddNumbersTogether( void );
 
 	ListNode* FindNthElementFromEnd( ListNode* list, int nthFromEnd );
 	void RemoveDuplicates( ListNode* list );
@@ -39,6 +40,7 @@ void LinkedListAlgorithms::TestAll( void )
 	TestFindNthFromLastElemenet( &node );
     TestRemoveDuplicates();
     TestCreateList();
+	TestAddNumbersTogether();
 }
 
 void LinkedListAlgorithms::TestFindNthFromLastElemenet( ListNode* list )
@@ -80,6 +82,46 @@ void LinkedListAlgorithms::TestRemoveDuplicates( void )
     cout << "Results  = ";
     PrintList( n1, true );
 }
+
+
+void LinkedListAlgorithms::TestCreateList( void )
+{
+    int t1[] = {1, 2, 3, 4, 5};
+    int e1[] = {1, 2, 3, 4, 5};
+
+    ListNode* list = CreateListFromArray( t1, 5 );
+
+    cout < ">>>> Create List Test";
+
+    cout << "Result = ";
+    PrintArray( t1, 0, 5, true );
+    cout << "Expected = ";
+    PrintArray( e1, 0, 5, true ); 
+    cout << "Returned = ";
+    PrintList( list, true );
+}
+
+void LinkedListAlgorithms::TestAddNumbersTogether( void )
+{
+	int ta1[] = {9,6};
+	int tb1[] = {1,8};
+    int e1[] = {0,5,1};
+    ListNode* na1 = CreateListFromArray( ta1, sizeof( ta1) / sizeof( int ) );
+    ListNode* nb1 = CreateListFromArray( tb1, sizeof( tb1) / sizeof( int ) );
+
+    cout << "<<<< Test Add Numbers Together" << endl;
+
+	ListNode* result = AddNumbersTogether( na1, nb1 );
+
+    cout << "Test     = ";
+    PrintArray( ta1, 0, sizeof( ta1 ) / sizeof( int ), false );
+	cout << " + " ;
+    PrintArray( tb1, 0, sizeof( tb1 ) / sizeof( int ), true );
+    cout << "Expected = ";
+    PrintArray( e1, 0, sizeof( e1 ) / sizeof( int ), true );
+    cout << "Results  = ";
+    PrintList( result, true );
+}
 /*
 * To get this one count n Pointers and then start another pointer n behind the head
 * Assumtion: 0 == last element, 1 = 2nd to last
@@ -114,22 +156,6 @@ ListNode * LinkedListAlgorithms::FindNthElementFromEnd( ListNode* list, int nthF
 	return tailPtr;
 }
 
-void LinkedListAlgorithms::TestCreateList( void )
-{
-    int t1[] = {1, 2, 3, 4, 5};
-    int e1[] = {1, 2, 3, 4, 5};
-
-    ListNode* list = CreateListFromArray( t1, 5 );
-
-    cout < ">>>> Create List Test";
-
-    cout << "Result = ";
-    PrintArray( t1, 0, 5, true );
-    cout << "Expected = ";
-    PrintArray( e1, 0, 5, true ); 
-    cout << "Returned = ";
-    PrintList( list, true );
-}
 
 /*
 * This will remove all duplicate data in a list
@@ -200,6 +226,10 @@ ListNode* LinkedListAlgorithms::CreateListFromArray( const int* elements, int co
 		if( currentNode == 0 )
 		{
 			currentNode = new ListNode( *elements );
+			startNode = currentNode;
+		}
+		else
+		{
 			currentNode->SetNextNode( new ListNode( *elements ) );
 			currentNode = currentNode->GetNextNode();
 		}
@@ -218,8 +248,8 @@ ListNode* LinkedListAlgorithms::CreateListFromArray( const int* elements, int co
 */
 ListNode* LinkedListAlgorithms::AddNumbersTogether( ListNode* node1, ListNode* node2 )
 {
-	ListNode* head;
-	ListNode* sum;
+	ListNode* head = 0;
+	ListNode* sum = 0;
 	int carryOver = 0;
 	int value1 = 0;
 	int value2 = 0;
@@ -246,7 +276,7 @@ ListNode* LinkedListAlgorithms::AddNumbersTogether( ListNode* node1, ListNode* n
 		}
 		else
 		{
-			sum->SetNextNode( new ListNode( ( value1 + value2 ) % 10 ) + carryOver );
+			sum->SetNextNode( new ListNode( ( value1 + value2 ) % 10 + carryOver ) );
 			sum = sum->GetNextNode();
 		}
 
@@ -257,7 +287,7 @@ ListNode* LinkedListAlgorithms::AddNumbersTogether( ListNode* node1, ListNode* n
 
 	if( carryOver ) 
 	{
-		sum->SetNextNode( new ListNode( carryOver );
+		sum->SetNextNode( new ListNode( carryOver ) );
 		sum = sum->GetNextNode();
 	}
 
