@@ -49,6 +49,9 @@ public:
 	void FillPaint( sBitmap& bitmap, int widthPos, int heightPos, int curColor, int newColor );
 
 	void GetAllChangeCombinations( int currentAmount, int changeRequired, sChangeDenom currentCombo, vector<sChangeDenom>& combos );
+
+    void GetAllChangeCombinations( int remaining, int pos, vector<int>& coins, vector<vector<int>>& combos );
+
 	void TestGetAllChangeCombinations( void );
 private:
 	vector<vector<int>> BreakSubset( vector<int> &set );
@@ -73,6 +76,7 @@ void RecursionAlgorithms::GetAllChangeCombinations( int currentAmount, int chang
 	else if( currentAmount == changeRequired )
 	{
 		combos.push_back( currentCombo );
+        return;
 	}
 
 	/*
@@ -80,10 +84,34 @@ void RecursionAlgorithms::GetAllChangeCombinations( int currentAmount, int chang
 	- 6
     6
 	*/
-	
-	currentCombo.pennies++;
-	GetAllChangeCombinations( currentAmount + 1, changeRequired, currentCombo, combos );
-	currentCombo.pennies--;
+	if( changeRequired - currentAmount >= 25 )
+    {
+        currentCombo.quarters++;
+        GetAllChangeCombinations( currentAmount + 25, changeRequired, currentCombo, combos );
+        currentCombo.quarters--;
+    }
+    if( changeRequired - currentAmount >= 10 )
+    {
+        currentCombo.dimes++;
+        GetAllChangeCombinations( currentAmount + 10, changeRequired, currentCombo, combos );
+        currentCombo.dimes--;
+    }
+    if( changeRequired - currentAmount >= 5 )
+    {
+        currentCombo.nickels++;
+        GetAllChangeCombinations( currentAmount + 5, changeRequired, currentCombo, combos );
+        currentCombo.nickels--;
+    }
+
+    currentCombo.pennies++;
+    GetAllChangeCombinations( currentAmount + 1, changeRequired, currentCombo, combos );
+    currentCombo.pennies--;
+
+    
+
+    currentCombo.pennies++;
+    GetAllChangeCombinations( currentAmount + 1, changeRequired, currentCombo, combos );
+    currentCombo.pennies--;
 
 	currentCombo.nickels++;
 	GetAllChangeCombinations( currentAmount + 5, changeRequired, currentCombo, combos );
@@ -96,6 +124,24 @@ void RecursionAlgorithms::GetAllChangeCombinations( int currentAmount, int chang
 	currentCombo.quarters++;
 	GetAllChangeCombinations( currentAmount + 25, changeRequired, currentCombo, combos );
 	currentCombo.quarters--;
+    
+}
+
+void RecursionAlgorithms::GetAllChangeCombinations( int remaining, int pos, vector<int>& coins, vector<vector<int>>& combos )
+{
+    static int denoms[] = {25, 10, 5, 1};
+    if (remaining == 0) {
+        combos.push_back( coins );
+    } else {
+        if (remaining >= denoms[pos]) {
+            coins.push_back(denoms[pos]);
+            GetAllChangeCombinations(remaining - denoms[pos],pos, coins, combos );
+            coins.pop_back();
+        }
+        if (pos + 1 < 4) {
+            GetAllChangeCombinations(remaining, pos + 1, coins, combos);
+        }
+    }
 }
 
 
@@ -109,6 +155,17 @@ void RecursionAlgorithms::TestGetAllChangeCombinations( void )
 	{
 		cout << "P=" << itr->pennies << " N=" << itr->nickels << " D=" << itr->dimes << " Q=" << itr->quarters << endl; 
 	}
+
+    vector<vector<int>> combosInts;
+    vector<int> coins;
+    GetAllChangeCombinations(6,0, coins, combosInts );
+
+    cout << "<<<<<< TestGetAllChangeCombinations" << endl;
+
+    for( vector<vector<int>>::iterator itr = combosInts.begin(); itr != combosInts.end(); itr++ )
+    {
+        PrintArray( *itr, true );
+    }
 }
 
 void RecursionAlgorithms::TestFillPaint( void )
