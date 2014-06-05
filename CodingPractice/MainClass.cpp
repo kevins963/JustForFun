@@ -15,6 +15,7 @@
 #include "StringAlgorithms.h"
 #include "LinkedListAlgorithms.h"
 #include "RecursionAlgorithms.h"
+#include "SortingAlgorithms.h"
 
 using namespace std;
 
@@ -77,6 +78,9 @@ MainClass::MainClass(void)
 
 	RecursionAlgorithms recursionAlgs;
 	recursionAlgs.TestAll();
+
+	SortingAlgorithms sortingAlg;
+	sortingAlg.TestAll();
 }
 
 void MainClass::RunGraphs()
