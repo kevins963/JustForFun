@@ -64,6 +64,12 @@
     <Filter Include="Recursion">
       <UniqueIdentifier>{6fca39f7-bdc7-4659-83e5-36a708d6e4ff}</UniqueIdentifier>
     </Filter>
+    <Filter Include="TreeGraph">
+      <UniqueIdentifier>{faf72810-5b74-4f5f-a3c1-89a0e969c9d1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="BitManipulation">
+      <UniqueIdentifier>{2021904a-bc9c-420d-876a-094967e88fca}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainClass.h">
@@ -169,6 +175,15 @@
       <Filter>Recursion</Filter>
     </ClInclude>
     <ClInclude Include="SortingAlgorithms.h">
+      <Filter>Sorting</Filter>
+    </ClInclude>
+    <ClInclude Include="TreeGraphAlgorithms.h">
+      <Filter>TreeGraph</Filter>
+    </ClInclude>
+    <ClInclude Include="BitManipulationAlg.h">
+      <Filter>BitManipulation</Filter>
+    </ClInclude>
+    <ClInclude Include="BucketSort.h">
       <Filter>Sorting</Filter>
     </ClInclude>
   </ItemGroup>

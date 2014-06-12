@@ -66,6 +66,8 @@
   <ItemGroup>
     <ClInclude Include="AmazonCode.h" />
     <ClInclude Include="AmazonTestRun.h" />
+    <ClInclude Include="BitManipulationAlg.h" />
+    <ClInclude Include="BucketSort.h" />
     <ClInclude Include="CardDeck.h" />
     <ClInclude Include="Cards.h" />
     <ClInclude Include="ClassA.h" />
@@ -96,6 +98,7 @@
     <ClInclude Include="SortingAlgorithms.h" />
     <ClInclude Include="StringAlgorithms.h" />
     <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeGraphAlgorithms.h" />
     <ClInclude Include="TreeNode.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="WarGame.h" />
