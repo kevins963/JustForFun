@@ -16,7 +16,9 @@
 #include "LinkedListAlgorithms.h"
 #include "RecursionAlgorithms.h"
 #include "SortingAlgorithms.h"
-
+#include "TreeGraphAlgorithms.h"
+#include "BitManipulationAlg.h"
+#include "BucketSort.h"
 using namespace std;
 
 MainClass::MainClass(void)
@@ -81,6 +83,15 @@ MainClass::MainClass(void)
 
 	SortingAlgorithms sortingAlg;
 	sortingAlg.TestAll();
+
+	TreeGraphAlgorithms trAlg;
+	trAlg.TestAll();
+
+	BitManipulationAlg bitManAlg;
+	bitManAlg.TestAll();
+
+	BucketSort bucketSort;
+	bucketSort.TestAll();
 }
 
 void MainClass::RunGraphs()
@@ -100,7 +111,7 @@ void MainClass::RunGraphs()
     graph.AddEdge(0, 6);
     graph.AddEdge(1, 2);
     graph.AddEdge(1, 3);
-    graph.AddEdge(2, 3);
+     graph.AddEdge(2, 3);
     graph.AddEdge(2, 5);
     graph.AddEdge(2, 6);
     graph.AddEdge(3, 2);

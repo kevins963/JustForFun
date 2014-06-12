@@ -21,8 +21,10 @@ public:
 	void InsertBalanced( int data );
 	void PrintTree( void );
 	void RotateNode( TreeNode * parent, TreeNode * node );
+	void PrintInOrder( void );
 	
 private:
+	void PrintInOrder( TreeNode* node );
 	TreeNode * _rootNode;
 };
 
@@ -54,7 +56,7 @@ void Tree::Insert( int data )
 		TreeNode * currentNode = _rootNode;
 		while(!found)
 		{
-			if(currentNode->GetData() > data)
+			if(currentNode->GetData() >= data)
 			{
 				if(currentNode->GetNodeLeft() == nullptr)
 				{
@@ -114,7 +116,7 @@ void Tree::InsertBalanced( int data )
 		TreeNode * currentNode = _rootNode;
 		while(!found)
 		{
-			if(currentNode->GetData() > data)
+			if(currentNode->GetData() >= data)
 			{ 
 				if(currentNode->GetNodeLeft() == nullptr)
 				{
@@ -214,5 +216,26 @@ void Tree::PrintTree()
 
 }
 
+void Tree::PrintInOrder( void )
+{
+	cout << "[";
+	PrintInOrder( _rootNode );
+	cout << "]" << endl;
+}
 
 
+void Tree::PrintInOrder( TreeNode* node )
+{
+	
+	if( node->GetNodeLeft() )
+	{
+		PrintInOrder( node->GetNodeLeft() );
+	}
+
+	cout << node->GetData() << ", ";
+
+	if( node->GetNodeRight() )
+	{
+		PrintInOrder( node->GetNodeRight() );
+	}
+}

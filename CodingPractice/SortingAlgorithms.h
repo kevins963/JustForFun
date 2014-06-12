@@ -9,6 +9,19 @@
 
 using namespace std;
 
+typedef struct sPerson
+{
+	int height;
+	int weight;
+
+	sPerson( int h, int w )
+	{
+		height = h;
+		weight = w;
+	}
+}
+sPerson;
+
 class SortingAlgorithms
 {
 public:
@@ -19,12 +32,120 @@ public:
 
 	void TestFindValueInRotatedArray( void );
 	int FindValueInRotatedArray( vector<int> inputArray, int findValue );
+
+	void TestBuildTowerOfPeople( void );
+	vector<sPerson> BuildTowerOfPeope( vector<sPerson>& poeple );
+	int GetLongestListOfPeople( vector<sPerson>& people, int startIndex, int compareIndex, vector<int>& longestPath );
+	static bool PersonCompare( const sPerson& p1, const sPerson& p2);
 };
+
+
+void SortingAlgorithms::TestBuildTowerOfPeople( void )
+{
+	vector<sPerson> people;
+	people.push_back( sPerson( 10, 100 ) );
+	people.push_back( sPerson( 9, 90 ) );
+	people.push_back( sPerson( 8, 105 ) );
+	people.push_back( sPerson( 7, 70 ) );
+	people.push_back( sPerson( 6, 85 ) );
+	people.push_back( sPerson( 5, 50 ) );
+	people.push_back( sPerson( 4, 40 ) );
+	people.push_back( sPerson( 3, 30 ) );
+
+	std::stable_sort( people.begin(), people.end(), PersonCompare );
+	vector<sPerson> tower = BuildTowerOfPeope( people );
+
+	cout << "<<<< TestBuildTowerOfPeople" << endl;
+
+	cout << "Max Size = " << tower.size() << endl;
+	for( vector<sPerson>::iterator itr = tower.begin(); itr < tower.end(); itr++ )
+	{
+		cout <<  "H=" << itr->height << "W=" << itr->weight << endl;
+	}
+}
+
+vector<sPerson> SortingAlgorithms::BuildTowerOfPeope( vector<sPerson>& people )
+{
+	vector<int> longestPath = vector<int>( people.size(), -1 );
+	vector<sPerson> tower;
+	int maxTowerSize = 0;
+	int maxTowerSizeIndex = 0;
+	for( int i = 0; i < longestPath.size(); i++ )
+	{
+		if( longestPath[i] == -1 )
+		{
+			int towerSize = GetLongestListOfPeople( people, i, i, longestPath );
+
+			if( towerSize > maxTowerSize )
+			{
+				maxTowerSize = towerSize;
+				maxTowerSizeIndex = i;
+			}
+		}
+	}
+
+	/* Create tower */
+
+	for( int i = maxTowerSizeIndex; i < people.size(); i++ )
+	{
+		if( tower.size() == 0 )
+		{
+			tower.push_back( people[i] );
+		}
+		else
+		{
+			if( PersonCompare( tower.back(), people[i] ) )
+			{
+				tower.push_back( people[i] );
+			}
+		}
+	}
+
+	return tower;
+
+}
+
+int SortingAlgorithms::GetLongestListOfPeople( vector<sPerson>& people, int startIndex, int compareIndex, vector<int>& longestPath )
+{
+	int value;
+
+	if( compareIndex >= people.size())
+	{
+		return 0;
+	}
+
+	if( PersonCompare( people[startIndex], people[compareIndex] ) )
+	{
+		/* correct order */
+
+		if( longestPath[compareIndex] == -1 )
+		{
+			longestPath[compareIndex] = 1 + GetLongestListOfPeople( people, compareIndex, compareIndex + 1, longestPath );
+		}
+		
+		return longestPath[compareIndex];
+	}
+
+	return GetLongestListOfPeople( people, compareIndex, compareIndex + 1, longestPath );
+}
+
+bool SortingAlgorithms::PersonCompare( const sPerson& p1, const sPerson& p2)
+{
+	if( p1.height > p2.height && p1.weight > p2.weight)
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+}
 
 void SortingAlgorithms::TestAll()
 {
 	TestSortAllAnagrams();
 	TestFindValueInRotatedArray();
+	TestBuildTowerOfPeople();
 }
 
 void SortingAlgorithms::TestSortAllAnagrams( void )

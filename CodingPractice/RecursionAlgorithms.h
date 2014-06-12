@@ -53,11 +53,69 @@ public:
     void GetAllChangeCombinations( int remaining, int pos, vector<int>& coins, vector<vector<int>>& combos );
 
 	void TestGetAllChangeCombinations( void );
+
+	void TestMaxHenioTower( void );
+	
+	int MaxHenioTower( vector<vector<int>>& tower, int currentMove );
+
+	bool IsPerfectSquare( int checkValue );
 private:
 	vector<vector<int>> BreakSubset( vector<int> &set );
 
 	void InsertParenthese( int leftCount, int rightCount, int totalCount, string& outString, string& totalString );
 };
+
+void RecursionAlgorithms::TestMaxHenioTower( void )
+{
+	vector<vector<int>> tower;
+
+	tower = vector<vector<int>>( 2, vector<int>() );
+	int total = MaxHenioTower( tower, 1 );
+
+	cout << "<<<<< TestMaxHenioTower " << endl;
+	cout << "Inputer  = " << tower.size() << endl;
+	cout << "Max = " << total << endl;
+
+	PrintArray(tower[0], true );
+	PrintArray(tower[1], true );
+}
+
+int RecursionAlgorithms::MaxHenioTower( vector<vector<int>>& tower, int currentMove )
+{
+
+	int max = currentMove;
+
+	/* Try each valid move */
+
+	for( vector<vector<int>>::iterator itr = tower.begin(); itr != tower.end(); itr++ )
+	{
+		int checkValue = ( itr->size() > 0 ) ? itr->back() : 0;
+
+		if( IsPerfectSquare( checkValue + currentMove ) || checkValue == 0 )
+		{
+			itr->push_back( currentMove );
+			int maxMoves = MaxHenioTower( tower, currentMove + 1 );
+			
+			max = ( max > maxMoves ) ? max : maxMoves;
+			itr->pop_back();
+		}
+	}
+
+	return max;
+}
+
+bool RecursionAlgorithms::IsPerfectSquare( int checkValue )
+{
+	for( int i = checkValue/2 + 1; i > 0; i-- )
+	{
+		if( i * i == checkValue )
+		{
+			return true;
+		}
+	}
+
+	return false;
+}
 
 /* 
 Get all possible combonations for a given value
@@ -298,6 +356,7 @@ void RecursionAlgorithms::TestAll( void )
 	TestGetAllParenthsesVariations();
 	TestFillPaint();
 	TestGetAllChangeCombinations();
+	TestMaxHenioTower();
 }
 
 void RecursionAlgorithms::TestGetAllParenthsesVariations( void )
