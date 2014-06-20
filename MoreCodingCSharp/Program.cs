@@ -16,6 +16,11 @@ namespace MoreCodingCSharp
 
             SortingAlgs sortAlgs = new SortingAlgs();
             sortAlgs.TestAll();
+
+            ChessShortestPath chessShortestPath = new ChessShortestPath();
+            chessShortestPath.Test();
+
+
         }
     }
 }
