@@ -189,8 +189,13 @@
     <ClInclude Include="BucketSort.h">
       <Filter>Sorting</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="knapsack.h">
       <Filter>KnapsackProblems</Filter>
+=======
+    <ClInclude Include="CodeChef.h">
+      <Filter>Header Files</Filter>
+>>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

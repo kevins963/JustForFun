@@ -6,6 +6,7 @@
 #include <set>
 #include <algorithm>
 #include <stdint.h>
+#include <string.h>
 
 using namespace std;
 
@@ -21,12 +22,19 @@ public:
     char* ReverseString( const char* inString);
     void ReverseStringInplace( char* inString );
     void RemoveAllDuplicateCharsNoExtraBuffer( string& inString );
-   
+    void RemoveAllDuplicateCharsNoExtraBufferKeys( string& inString );
+    bool HasSubstring(string input, string findString );
+    string HasSubstringDisregardNonChar(string input, string findString );
+    
+
 private:
     void TestAreAllCharactersUnique( void );
     void TestReverseString( void );
     void TestReverseStringInplace( void );
 	void TestRemoveAllDuplicateCharsNoExtraBuffer( void );
+    void TestHasSubstring( void );
+    void TestHasSubstringDisregardNonChar( void );
+    void TestRemoveAllDuplicateCharsNoExtraBufferKeys( void );
 };
 
 
@@ -36,6 +44,9 @@ void StringAlgorithms::TestAll( void )
     TestReverseString();
     TestReverseStringInplace();
 	TestRemoveAllDuplicateCharsNoExtraBuffer();
+    TestHasSubstring();
+    TestHasSubstringDisregardNonChar();
+    TestRemoveAllDuplicateCharsNoExtraBufferKeys();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -197,6 +208,9 @@ void StringAlgorithms::ReverseStringInplace( char* inString )
 
 }
 
+/*
+o(n^2)
+*/
 void StringAlgorithms::RemoveAllDuplicateCharsNoExtraBuffer( string& inString )
 {
 	
@@ -224,6 +238,165 @@ void StringAlgorithms::RemoveAllDuplicateCharsNoExtraBuffer( string& inString )
 	}
 
 	inString.resize( outStringLength );
+}
+
+void StringAlgorithms::RemoveAllDuplicateCharsNoExtraBufferKeys( string& inString )
+{
+    char characters[256] = {0};
+
+    int outStringLength;
+    bool found;
+
+    outStringLength = 1;
+    
+    int j = 0;
+ 
+    for( int i = 0; i < inString.length(); i++ )
+    {
+        if( characters[inString[i]] == 0 )
+        {
+            characters[inString[i]] = 1;
+
+            inString[j++] = inString[i];
+        }
+    }
+
+    inString.resize(j);
+}
+
+
+void StringAlgorithms::TestRemoveAllDuplicateCharsNoExtraBufferKeys( void )
+{
+    cout << "TestRemoveAllDuplicateCharsNoExtraBufferKeys" << endl;
+    vector<pair<string, string>> test;
+    
+    test.push_back( make_pair("abc", "abc"));
+    test.push_back( make_pair("aaabbbbcccc", "abc"));
+    test.push_back( make_pair("abcabcabcabcacbb", "abc"));
+    test.push_back( make_pair("aabababccabbc", "abc"));
+
+    for( auto itr = test.begin(); itr != test.end(); itr++ )
+    {
+        cout << "test = " << itr->first << " expected = " << itr->second;
+        RemoveAllDuplicateCharsNoExtraBufferKeys( itr->first );
+        cout << " actual = " << itr->first << endl;
+    }
+}
+
+bool StringAlgorithms::HasSubstring( string input, string findString )
+{
+    bool isFound = false;
+
+    for( int i = 0; i <= input.length() - findString.length() && input.length() > 0 && !isFound; i++ )
+    {
+        if( input[i] == findString[0] )
+        {
+            bool isMatchError = false;
+
+            for( int j = 0; j < findString.length() && !isMatchError; j++ )
+            {
+                if( input[i+j] != findString[j] )
+                {
+                    isMatchError = true;
+                }
+            }
+            
+            isFound = !isMatchError;
+        }
+    }
+
+    return isFound;
+}
+
+void StringAlgorithms::TestHasSubstring( void )
+{
+    string matchString = "abc";
+   
+    cout << "************** HAS SUBSTRING ************";
+    vector<pair<string,bool>> test;
+    test.push_back(make_pair("abc", true));
+    test.push_back(make_pair(".abc", true));
+    test.push_back(make_pair("abc.", true));
+    test.push_back(make_pair("a.bc", false));
+    test.push_back(make_pair("ab.aabc", true));
+    test.push_back(make_pair("aaab", false));
+
+    for( auto itr = test.begin(); itr != test.end(); itr++ )
+    {
+        cout << "match = " << matchString << " string = " << itr->first << endl;
+        cout << "expected= " << itr->second << " actual = " << HasSubstring( itr->first, matchString ) << endl;
+    }
+}
+
+
+string StringAlgorithms::HasSubstringDisregardNonChar( string input, string findString )
+{
+    bool isFound = false;
+    string subString;
+    int start = 0;
+    int end = 0;
+
+    for( int i = 0; i < input.length()&& input.length() > 0 && !isFound; i++ )
+    {
+        if( input[i] == findString[0] )
+        {
+            int matchError = false;
+            int matchCount = 0;
+
+            int j = 0;
+            int k = i;
+            
+            while( j < findString.length() && k < input.length() && !matchError)
+            {
+                if( !isalnum(input[k]) )
+                {
+                    k++;
+                }
+                else if( input[k] != findString[j] )
+                {
+                    matchError = true;
+                }
+                else
+                {
+                    matchCount++;
+                    k++;
+                    j++;
+                }
+            }
+
+            if( matchCount == findString.length() )
+            {
+                isFound = true;
+                start = i;
+                end = k;
+
+                subString = input.substr( start, ( end - start ) );
+            }
+        }
+    }
+
+    return subString;
+}
+
+void StringAlgorithms::TestHasSubstringDisregardNonChar( void )
+{
+    string matchString = "abc";
+
+    cout << "************** HAS SUBSTRING DISREGARD NON CHAR ************" << endl;
+    vector<pair<string,string>> test;
+    test.push_back(make_pair("abc", "abc"));
+    test.push_back(make_pair(".abc", "abc"));
+    test.push_back(make_pair("abc.", "abc"));
+    test.push_back(make_pair("a.bc", "a.bc"));
+    test.push_back(make_pair("ab.aabc", "abc"));
+    test.push_back(make_pair("...a., b  /c/.,", "a., b  /c"));
+    test.push_back(make_pair("...a., b  /dc/.,", ""));
+
+    for( auto itr = test.begin(); itr != test.end(); itr++ )
+    {
+        cout << "match = " << matchString << " string = " << itr->first << endl;
+        cout << "expected= " << itr->second << " actual = " << HasSubstringDisregardNonChar( itr->first, matchString ) << endl << endl;
+    }
 }
 
 #endif // !STRING_ALGORITHMS_H__

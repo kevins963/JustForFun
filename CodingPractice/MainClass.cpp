@@ -19,6 +19,11 @@
 #include "TreeGraphAlgorithms.h"
 #include "BitManipulationAlg.h"
 #include "BucketSort.h"
+#include "CodeChef.h"
+#include <iostream>
+#include <fstream>
+#include <string>
+
 using namespace std;
 
 MainClass::MainClass(void)
@@ -92,6 +97,34 @@ MainClass::MainClass(void)
 
 	BucketSort bucketSort;
 	bucketSort.TestAll();
+
+    CodeChef chefCode;
+    chefCode.TestAll();
+
+    RunFileIo();
+}
+
+void MainClass::RunFileIo()
+{
+    std::fstream fs;
+    fs.open ("test.txt", std::fstream::out | std::fstream::app);
+
+    if( fs.good() )
+        fs << " more lorem ipsum";
+
+    fs.close();
+
+
+    string fileData;
+    fs.open ("test.txt", std::fstream::in | std::fstream::app);
+        fs >> fileData;
+
+    /*while( !fs.eof() )
+    {
+        //fs.read();
+       fs >>fileData;     
+       cout << fileData;
+    }*/
 }
 
 void MainClass::RunGraphs()

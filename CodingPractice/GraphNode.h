@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <utility>
 
 using namespace std;
 
@@ -52,5 +53,44 @@ private:
     int _data;
     vector<GraphNode*> _edges;
     bool _visited;
+
+};
+
+class GraphNodeWeighted
+{
+public:
+    GraphNodeWeighted(int data)
+    {
+        _data = data;
+    }
+
+    ~GraphNodeWeighted()
+    {
+
+    }
+
+    int GetData()
+    {
+        return _data;
+    }
+
+    void SetEdges( GraphNodeWeighted* edge, int cost )
+    {
+        _edges.push_back(make_pair(edge, cost));
+    }
+
+    void ClearEdges()
+    {
+        _edges.clear();
+    }
+
+    vector<pair<GraphNodeWeighted*, int>>* GetEdges()
+    {
+        return &_edges;
+    }
+
+private:
+    int _data;
+    vector<pair<GraphNodeWeighted*, int>> _edges;
 
 };

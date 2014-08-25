@@ -12,5 +12,7 @@ public:
     void RunPalandrome();
     void RunCardGame();
     void RunFib();
+
+    void RunFileIo();
 };
 

@@ -74,6 +74,7 @@
     <ClInclude Include="ClassB.h" />
     <ClInclude Include="ClassC.h" />
     <ClInclude Include="CloneGraph.h" />
+    <ClInclude Include="CodeChef.h" />
     <ClInclude Include="CyclicList.h" />
     <ClInclude Include="DataTypes.h" />
     <ClInclude Include="F350.h" />
