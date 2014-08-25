@@ -70,6 +70,9 @@
     <Filter Include="BitManipulation">
       <UniqueIdentifier>{2021904a-bc9c-420d-876a-094967e88fca}</UniqueIdentifier>
     </Filter>
+    <Filter Include="KnapsackProblems">
+      <UniqueIdentifier>{d111dad4-056d-4b6d-aacc-028367e233be}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MainClass.h">
@@ -185,6 +188,9 @@
     </ClInclude>
     <ClInclude Include="BucketSort.h">
       <Filter>Sorting</Filter>
+    </ClInclude>
+    <ClInclude Include="knapsack.h">
+      <Filter>KnapsackProblems</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
