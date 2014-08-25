@@ -37,6 +37,15 @@ public:
 	vector<sPerson> BuildTowerOfPeope( vector<sPerson>& poeple );
 	int GetLongestListOfPeople( vector<sPerson>& people, int startIndex, int compareIndex, vector<int>& longestPath );
 	static bool PersonCompare( const sPerson& p1, const sPerson& p2);
+
+    void TestSelectionSort( void );
+    void SelectionSort( vector<int> & inputArray );
+
+    void TestInsertionSort( void );
+    void InsertionSort( vector<int> & inputArray );
+
+    void TestBubbleSort( void );
+    void BubbleSort( vector<int> & inputArray );
 };
 
 
@@ -146,6 +155,9 @@ void SortingAlgorithms::TestAll()
 	TestSortAllAnagrams();
 	TestFindValueInRotatedArray();
 	TestBuildTowerOfPeople();
+    TestSelectionSort();
+    TestInsertionSort();
+    TestBubbleSort();
 }
 
 void SortingAlgorithms::TestSortAllAnagrams( void )
@@ -298,4 +310,143 @@ int SortingAlgorithms::FindValueInRotatedArray( vector<int> inputArray, int find
     return -1;
 }
 
+void SortingAlgorithms::TestSelectionSort( void )
+{
+    int testArray[] = {6,1,5,8,0,7,4,9,3,2};
+
+    vector<int> testVector(testArray, testArray + 10);
+
+    cout << "**************TEST SELECTION SORT*****************" << endl;
+
+    cout << "Input = ";
+    PrintArray( testVector, true );
+
+    SelectionSort( testVector );
+    cout << "Output = ";
+    PrintArray(testVector, true);
+}
+
+/*
+Find the smallest item in the array and put in current position
+
+Aux = 0
+Runtime = n^2
+*/
+void SortingAlgorithms::SelectionSort( vector<int> & inputArray )
+{
+    for( int i = 0; i < inputArray.size() - 1; i++ )
+    {
+        int minIndex = i;
+        
+        for ( int j = i + 1; j < inputArray.size(); j++ )
+        {
+            if( inputArray[j] < inputArray[minIndex] )
+            {
+                minIndex = j;
+            }
+        }
+
+        if( minIndex != i )
+        {
+            int temp = inputArray[minIndex];
+            inputArray[minIndex] = inputArray[i];
+            inputArray[i] = temp;
+        }
+    }
+}
+
+void SortingAlgorithms::TestInsertionSort( void )
+{
+    int testArray[] = {6,1,5,8,0,7,4,9,3,2};
+
+    vector<int> testVector(testArray, testArray + 10);
+
+    cout << "**************TEST Insertion SORT*****************" << endl;
+
+    cout << "Input = ";
+    PrintArray( testVector, true );
+
+    InsertionSort( testVector );
+    cout << "Output = ";
+    PrintArray(testVector, true);
+}
+
+/*
+increase index by one and go from highest to lowest until new index is in correct place
+
+for i = 1
+for j = i -> j--
+  while j < j-1 
+    swap
+
+Aux = 0
+Runtime = n^2
+*/
+void SortingAlgorithms::InsertionSort( vector<int> & inputArray )
+{
+    for( int i = 1; i < inputArray.size(); i++ )
+    {
+
+        for ( int j = i; j > 0; j-- )
+        {
+            while( inputArray[j] < inputArray[j-1])
+            {
+                int temp = inputArray[j];
+                inputArray[j] = inputArray[j-1];
+                inputArray[j-1] = temp;
+            }
+        }
+    }
+}
+
+
+void SortingAlgorithms::TestBubbleSort( void )
+{
+    int testArray[] = {6,1,5,8,0,7,4,9,3,2};
+
+    vector<int> testVector(testArray, testArray + 10);
+
+    cout << "**************TEST BUBBLE SORT*****************" << endl;
+
+    cout << "Input = ";
+    PrintArray( testVector, true );
+
+    BubbleSort( testVector );
+    cout << "Output = ";
+    PrintArray(testVector, true);
+}
+
+/*
+compare each item in array to adjacent until no more swaps needed, highest is always taken to top
+
+
+for i = arraysize -> 0, i--
+for j = 0 -> i - 1, j++
+    if( array[j] > array[j+1])
+        swap
+
+Aux = 0
+Runtime = n^2
+*/
+void SortingAlgorithms::BubbleSort( vector<int> & inputArray )
+{
+    bool swapped = true;
+
+    for( int i = inputArray.size(); i > 0 && swapped; i-- )
+    {
+        swapped = false;
+
+        for ( int j = 0; j < i - 1; j++ )
+        {
+            if( inputArray[j] > inputArray[j+1])
+            {
+                int temp = inputArray[j];
+                inputArray[j] = inputArray[j+1];
+                inputArray[j+1] = temp;
+                
+                swapped = true;
+            }
+        }
+    }
+}
 #endif

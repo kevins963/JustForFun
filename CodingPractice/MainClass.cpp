@@ -19,7 +19,7 @@
 #include "TreeGraphAlgorithms.h"
 #include "BitManipulationAlg.h"
 #include "BucketSort.h"
-
+#include "CodeChef.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -97,6 +97,9 @@ MainClass::MainClass(void)
 
 	BucketSort bucketSort;
 	bucketSort.TestAll();
+
+    CodeChef chefCode;
+    chefCode.TestAll();
 
     RunFileIo();
 }

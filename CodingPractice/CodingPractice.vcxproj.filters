@@ -186,6 +186,9 @@
     <ClInclude Include="BucketSort.h">
       <Filter>Sorting</Filter>
     </ClInclude>
+    <ClInclude Include="CodeChef.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MainClass.cpp">
