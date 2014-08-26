@@ -8,16 +8,14 @@
 
 using namespace std;
 
+typedef struct knapsackItem
+{
+	int weight;
+	int cost;
+} sKnapsackItem;
 
 class CodeChef
 {
-
-public:
-    typedef struct knapsackItem
-    {
-        int weight;
-        int cost;
-    } sKnapsackItem;
 
 public:
     void TestAll( void );
@@ -80,12 +78,58 @@ void CodeChef::TestFindMaxKnapsackCost( void )
 
 }
 
-vector<CodeChef::sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<CodeChef::sKnapsackItem> items, int maxWeight )
+/*
+Create a weight/cost table
+*/
+vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &items, int maxWeight )
 {
     std::sort( items.begin(), items.end(), SortKnapsackItem );
+	
+	vector<vector<int>> costWeightMatrix;
+
+	for( int itemCount = 0; itemCount <= items.size() + 1; itemCount++ )
+	{
+		costWeightMatrix.push_back( vector<int>(maxWeight, 0) );
+
+		for( int currentWeight = 0; currentWeight <= maxWeight; currentWeight++ )
+		{
+			if( itemCount == 0 || currentWeight == 0 )
+			{
+				if( items[i-1].weight <= currentWeight )
+				{
+					costWeightMatrix[i][w] = max( items[i-1] + costWeightMatrix[i-1][])
+				}
+				else
+				{
+					costWeightMatrix[i][w] = costWeightMatrix[i-1][currentWeight];
+				}
+			}
+		}
+	}
+
+	if(maxWeight <= 0 || currentIndex < 0 || currentIndex >= items.size() || items[currentIndex].weight > maxWeight)
+		return vector<sKnapsackItem>();
+
+	vector<sKnapsackItem> knapsack = FindMaxKnapsackCost( items, maxWeight, currentIndex + 1);
+	vector<sKnapsackItem> knapsackCurrent = FindMaxKnapsackCost( items, maxWeight - items[currentIndex].weight, currentIndex + 1)
+	knapsackCurrent.push_back( items[currentIndex] );
+
+
+	return the max knap sack
+	vector<sKnapsackItem> knapsack;
+
+	
+	int weight = 0;
+
 }
 
-bool SortKnapsackItem( const CodeChef::sKnapsackItem & item1, const CodeChef::sKnapsackItem & item2 )
+vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> items, int maxWeight, int currentIndex )
+{
+
+}
+
+
+bool SortKnapsackItem( const sKnapsackItem & item1, const sKnapsackItem & item2 )
 {
     if( item1.weight == item2.weight )
     {
