@@ -25,6 +25,7 @@ public:
     void RemoveAllDuplicateCharsNoExtraBufferKeys( string& inString );
     bool HasSubstring(string input, string findString );
     string HasSubstringDisregardNonChar(string input, string findString );
+	bool IsAnagram( string* string1, string* string2 );
     
 
 private:
@@ -35,6 +36,7 @@ private:
     void TestHasSubstring( void );
     void TestHasSubstringDisregardNonChar( void );
     void TestRemoveAllDuplicateCharsNoExtraBufferKeys( void );
+	void TestIsAnagram( void );
 };
 
 
@@ -47,6 +49,7 @@ void StringAlgorithms::TestAll( void )
     TestHasSubstring();
     TestHasSubstringDisregardNonChar();
     TestRemoveAllDuplicateCharsNoExtraBufferKeys();
+	TestIsAnagram();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -397,6 +400,76 @@ void StringAlgorithms::TestHasSubstringDisregardNonChar( void )
         cout << "match = " << matchString << " string = " << itr->first << endl;
         cout << "expected= " << itr->second << " actual = " << HasSubstringDisregardNonChar( itr->first, matchString ) << endl << endl;
     }
+}
+
+void StringAlgorithms::TestIsAnagram( void )
+{
+	cout << "***************TEST IS ANAGRAM******************\n";
+	vector<pair<pair<string, string>, bool>> test;
+
+	test.push_back( make_pair( make_pair( "abc", "abc" ), true ) );
+	test.push_back( make_pair( make_pair( "abc", "cab" ), true ) );
+	test.push_back( make_pair( make_pair( "abbbc", "cbbba" ), true ) );
+	test.push_back( make_pair( make_pair( "abc", "ca" ), false ) );
+	test.push_back( make_pair( make_pair( "abc", "cabb" ), false ) );
+
+	for( auto itr = test.begin(); itr != test.end(); ++itr )
+	{
+		cout << "str1 = " << itr->first.first << " str2 = " << itr->first.second << endl;
+		cout << "expected = " << itr->second << " actual = " << IsAnagram( &itr->first.first, &itr->first.second ) << endl << endl;
+	}
+
+}
+
+bool StringAlgorithms::IsAnagram(string* string1, string* string2)
+{
+	char isAnagram;
+	char characterCount[256];
+
+	int strLen1;
+	int strLen2;
+
+	memset( characterCount, 0, 256 );
+
+	strLen1 = string1->size();
+	strLen2 = string2->size();
+
+	// case 0: strings must be same size
+
+	if( strLen1 != strLen2 )
+	{
+		isAnagram = false;
+	}
+	// case 1: same number of characters in each string
+	else
+	{
+		// traverse each string and count total chars
+		for( int i = 0; i < strLen1; ++i )
+		{
+			characterCount[ string1->at( i ) ]++;
+		}
+
+		// traverse each string and count total chars
+		for( int i = 0; i < strLen2; ++i )
+		{
+			characterCount[ string2->at( i ) ]--;
+		}
+
+		// if both counts are same then it is an anagram
+
+		isAnagram = true;
+
+		for( int i = 0; i < 256; ++i )
+		{
+			if( characterCount[i] != 0 )
+			{
+				isAnagram = false;
+			}
+		}
+	}
+
+	return isAnagram;
+	
 }
 
 #endif // !STRING_ALGORITHMS_H__

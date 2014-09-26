@@ -23,6 +23,7 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "MathProblems.h"
 
 using namespace std;
 
@@ -101,7 +102,11 @@ MainClass::MainClass(void)
     CodeChef chefCode;
     chefCode.TestAll();
 
+	MathProblems mathProblems;
+	mathProblems.TestAll();
+
     RunFileIo();
+
 }
 
 void MainClass::RunFileIo()

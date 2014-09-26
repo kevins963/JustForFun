@@ -66,7 +66,6 @@ string Palandromic::GetLongestPalandromic( string &sentence )
             whitespaceRemovedSentence.push_back(charactor);
             //vector<int> &indicies = 
             charMap[charactor].push_back(index++);
-
         }
     }
 
