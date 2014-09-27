@@ -12,6 +12,5 @@ namespace CodingPracticeCSharp.Elevator
      */
     class ElevatorSystem
     {
-        List<ButtonControl
     }
 }

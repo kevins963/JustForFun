@@ -78,6 +78,7 @@
     <ClInclude Include="CodeChef.h" />
     <ClInclude Include="CyclicList.h" />
     <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="EffectiveSets.h" />
     <ClInclude Include="F350.h" />
     <ClInclude Include="Fibinocci.h" />
     <ClInclude Include="Graph.h" />
