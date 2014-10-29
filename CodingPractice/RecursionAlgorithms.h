@@ -165,12 +165,6 @@ void RecursionAlgorithms::GetAllChangeCombinations( int currentAmount, int chang
     GetAllChangeCombinations( currentAmount + 1, changeRequired, currentCombo, combos );
     currentCombo.pennies--;
 
-    
-
-    currentCombo.pennies++;
-    GetAllChangeCombinations( currentAmount + 1, changeRequired, currentCombo, combos );
-    currentCombo.pennies--;
-
 	currentCombo.nickels++;
 	GetAllChangeCombinations( currentAmount + 5, changeRequired, currentCombo, combos );
 	currentCombo.nickels--;
@@ -206,17 +200,17 @@ void RecursionAlgorithms::GetAllChangeCombinations( int remaining, int pos, vect
 void RecursionAlgorithms::TestGetAllChangeCombinations( void )
 {
 	vector<sChangeDenom> combos;
-	GetAllChangeCombinations( 0, 6, sChangeDenom(), combos );
+	/*GetAllChangeCombinations( 0, 31, sChangeDenom(), combos );
 
 	cout << "<<<<<< TestGetAllChangeCombinations" << endl;
 	for( vector<sChangeDenom>::iterator itr = combos.begin(); itr != combos.end(); itr++ )
 	{
 		cout << "P=" << itr->pennies << " N=" << itr->nickels << " D=" << itr->dimes << " Q=" << itr->quarters << endl; 
 	}
-
+    */
     vector<vector<int>> combosInts;
     vector<int> coins;
-    GetAllChangeCombinations(6,0, coins, combosInts );
+    GetAllChangeCombinations(31,0, coins, combosInts );
 
     cout << "<<<<<< TestGetAllChangeCombinations" << endl;
 

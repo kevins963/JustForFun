@@ -59,7 +59,7 @@ int QuickSort::Pivot( int* array, int start, int end )
 {
     /* go through entire array and put items lower then end at beginning */
 
-    int pivot = start;;
+    int pivot = start;
     int i;
     
     for( i = start; i < end; i++ )

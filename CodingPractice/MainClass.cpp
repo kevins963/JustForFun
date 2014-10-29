@@ -23,6 +23,9 @@
 #include <iostream>
 #include <fstream>
 #include <string>
+#include "Practice1.h"
+#include "LinkedList_C.h"
+#include "hackerrank.h"
 
 using namespace std;
 
@@ -102,6 +105,16 @@ MainClass::MainClass(void)
     chefCode.TestAll();
 
     RunFileIo();
+
+    Practice1 practice;
+    practice.Run();
+
+    LinkedList_C linkedList;
+    linkedList.TestAll();
+
+    Hackerrank hackerrank;
+    hackerrank.TestAll();
+    
 }
 
 void MainClass::RunFileIo()

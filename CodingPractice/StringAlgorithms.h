@@ -205,7 +205,6 @@ void StringAlgorithms::ReverseStringInplace( char* inString )
         *ptrTail++ = *ptrHead;
         *ptrHead-- = tempChar;
     }
-
 }
 
 /*

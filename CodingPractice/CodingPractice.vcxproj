@@ -81,10 +81,12 @@
     <ClInclude Include="Fibinocci.h" />
     <ClInclude Include="Graph.h" />
     <ClInclude Include="GraphNode.h" />
+    <ClInclude Include="hackerrank.h" />
     <ClInclude Include="Heapsort.h" />
     <ClInclude Include="IVehicle.h" />
     <ClInclude Include="knapsack.h" />
     <ClInclude Include="LinkedListAlgorithms.h" />
+    <ClInclude Include="LinkedList_C.h" />
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="MainClass.h" />
     <ClInclude Include="Malloc.h" />
@@ -92,6 +94,7 @@
     <ClInclude Include="Palandromic.h" />
     <ClInclude Include="ParkingLot.h" />
     <ClInclude Include="ParkingSpot.h" />
+    <ClInclude Include="Practice1.h" />
     <ClInclude Include="Prius.h" />
     <ClInclude Include="QuickSort.h" />
     <ClInclude Include="RecursionAlgorithms.h" />

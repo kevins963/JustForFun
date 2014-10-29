@@ -1,215 +1,54 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="DataStructures">
-      <UniqueIdentifier>{1589678f-344a-493f-8a7d-29fd8abf1f68}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="ClassConstruction">
-      <UniqueIdentifier>{335dfb84-a677-423f-9c3b-478677b3dbb3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OODesign">
-      <UniqueIdentifier>{36aa305b-cd29-47b3-9d1b-de658d1d5dd4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OODesign\ParkingLot">
-      <UniqueIdentifier>{b25348f2-0d5f-414b-901b-bf84081fbfe9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="OODesign\ImplementMalloc">
-      <UniqueIdentifier>{9c5ade8b-11d1-4bd7-a1c7-19f188df6027}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="RegMatch">
-      <UniqueIdentifier>{638f8369-e1e8-4765-a3e4-52c8e3f65057}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Sorting">
-      <UniqueIdentifier>{f5cbfbcd-6304-455a-b461-15e2216feced}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeetCode">
-      <UniqueIdentifier>{82ce18c8-e143-46c2-a1b6-ad662ace77c2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeetCode\CloneGraph">
-      <UniqueIdentifier>{f43a1f79-00eb-4041-9458-4935489a092c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LeetCode\Palandromic">
-      <UniqueIdentifier>{da1c980a-3307-4805-b00a-c22f4828af0a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="CardGame">
-      <UniqueIdentifier>{d1a2bfb3-8121-422f-a2a4-8e9e0b0180ac}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Std">
-      <UniqueIdentifier>{d1f95288-a32c-485c-8ce7-8cb12ca7d577}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Questions">
-      <UniqueIdentifier>{4551bfa0-0e83-4d6b-939a-cde6817e6331}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="String">
-      <UniqueIdentifier>{7bffed10-0162-4557-bd6d-143017b298f7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="NewFilter1">
-      <UniqueIdentifier>{746bc73a-01f3-438c-9a7a-39246273daa7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="LinkedList">
-      <UniqueIdentifier>{b40d26a2-f421-4a11-a650-f0adc2af7f1e}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Recursion">
-      <UniqueIdentifier>{6fca39f7-bdc7-4659-83e5-36a708d6e4ff}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="TreeGraph">
-      <UniqueIdentifier>{faf72810-5b74-4f5f-a3c1-89a0e969c9d1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="BitManipulation">
-      <UniqueIdentifier>{2021904a-bc9c-420d-876a-094967e88fca}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="KnapsackProblems">
-      <UniqueIdentifier>{d111dad4-056d-4b6d-aacc-028367e233be}</UniqueIdentifier>
-    </Filter>
+    <ClCompile Include="ClassA.cpp" />
+    <ClCompile Include="ClassB.cpp" />
+    <ClCompile Include="ClassC.cpp" />
+    <ClCompile Include="MainClass.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="MainClass.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ListNode.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="CyclicList.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassA.h">
-      <Filter>ClassConstruction</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassB.h">
-      <Filter>ClassConstruction</Filter>
-    </ClInclude>
-    <ClInclude Include="ClassC.h">
-      <Filter>ClassConstruction</Filter>
-    </ClInclude>
-    <ClInclude Include="ParkingLot.h">
-      <Filter>OODesign\ParkingLot</Filter>
-    </ClInclude>
-    <ClInclude Include="ParkingSpot.h">
-      <Filter>OODesign\ParkingLot</Filter>
-    </ClInclude>
-    <ClInclude Include="IVehicle.h">
-      <Filter>OODesign\ParkingLot</Filter>
-    </ClInclude>
-    <ClInclude Include="Prius.h">
-      <Filter>OODesign\ParkingLot</Filter>
-    </ClInclude>
-    <ClInclude Include="F350.h">
-      <Filter>OODesign\ParkingLot</Filter>
-    </ClInclude>
-    <ClInclude Include="Simulator.h">
-      <Filter>OODesign\ParkingLot</Filter>
-    </ClInclude>
-    <ClInclude Include="Graph.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="GraphNode.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeNode.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="Tree.h">
-      <Filter>DataStructures</Filter>
-    </ClInclude>
-    <ClInclude Include="Malloc.h">
-      <Filter>OODesign\ImplementMalloc</Filter>
-    </ClInclude>
-    <ClInclude Include="RegMatch.h">
-      <Filter>RegMatch</Filter>
-    </ClInclude>
-    <ClInclude Include="MergeSort.h">
-      <Filter>Sorting</Filter>
-    </ClInclude>
-    <ClInclude Include="QuickSort.h">
-      <Filter>Sorting</Filter>
-    </ClInclude>
-    <ClInclude Include="CloneGraph.h">
-      <Filter>LeetCode\CloneGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="Palandromic.h">
-      <Filter>LeetCode\Palandromic</Filter>
-    </ClInclude>
-    <ClInclude Include="Cards.h">
-      <Filter>CardGame</Filter>
-    </ClInclude>
-    <ClInclude Include="CardDeck.h">
-      <Filter>CardGame</Filter>
-    </ClInclude>
-    <ClInclude Include="WarGame.h">
-      <Filter>CardGame</Filter>
-    </ClInclude>
-    <ClInclude Include="DataTypes.h">
-      <Filter>Std</Filter>
-    </ClInclude>
-    <ClInclude Include="Utilities.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Fibinocci.h">
-      <Filter>Questions</Filter>
-    </ClInclude>
-    <ClInclude Include="Heapsort.h">
-      <Filter>Sorting</Filter>
-    </ClInclude>
-    <ClInclude Include="AmazonCode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="AmazonTestRun.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="StringAlgorithms.h">
-      <Filter>String</Filter>
-    </ClInclude>
-    <ClInclude Include="LinkedListAlgorithms.h">
-      <Filter>LinkedList</Filter>
-    </ClInclude>
-    <ClInclude Include="RecursionAlgorithms.h">
-      <Filter>Recursion</Filter>
-    </ClInclude>
-    <ClInclude Include="SortingAlgorithms.h">
-      <Filter>Sorting</Filter>
-    </ClInclude>
-    <ClInclude Include="TreeGraphAlgorithms.h">
-      <Filter>TreeGraph</Filter>
-    </ClInclude>
-    <ClInclude Include="BitManipulationAlg.h">
-      <Filter>BitManipulation</Filter>
-    </ClInclude>
-    <ClInclude Include="BucketSort.h">
-      <Filter>Sorting</Filter>
-    </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="knapsack.h">
-      <Filter>KnapsackProblems</Filter>
-=======
-    <ClInclude Include="CodeChef.h">
-      <Filter>Header Files</Filter>
->>>>>>> origin/master
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="MainClass.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassA.cpp">
-      <Filter>ClassConstruction</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassB.cpp">
-      <Filter>ClassConstruction</Filter>
-    </ClCompile>
-    <ClCompile Include="ClassC.cpp">
-      <Filter>ClassConstruction</Filter>
-    </ClCompile>
+    <ClInclude Include="AmazonCode.h" />
+    <ClInclude Include="AmazonTestRun.h" />
+    <ClInclude Include="BitManipulationAlg.h" />
+    <ClInclude Include="BucketSort.h" />
+    <ClInclude Include="CardDeck.h" />
+    <ClInclude Include="Cards.h" />
+    <ClInclude Include="ClassA.h" />
+    <ClInclude Include="ClassB.h" />
+    <ClInclude Include="ClassC.h" />
+    <ClInclude Include="CloneGraph.h" />
+    <ClInclude Include="CodeChef.h" />
+    <ClInclude Include="CyclicList.h" />
+    <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="F350.h" />
+    <ClInclude Include="Fibinocci.h" />
+    <ClInclude Include="Graph.h" />
+    <ClInclude Include="GraphNode.h" />
+    <ClInclude Include="Heapsort.h" />
+    <ClInclude Include="IVehicle.h" />
+    <ClInclude Include="knapsack.h" />
+    <ClInclude Include="LinkedListAlgorithms.h" />
+    <ClInclude Include="ListNode.h" />
+    <ClInclude Include="MainClass.h" />
+    <ClInclude Include="Malloc.h" />
+    <ClInclude Include="MergeSort.h" />
+    <ClInclude Include="Palandromic.h" />
+    <ClInclude Include="ParkingLot.h" />
+    <ClInclude Include="ParkingSpot.h" />
+    <ClInclude Include="Prius.h" />
+    <ClInclude Include="QuickSort.h" />
+    <ClInclude Include="RecursionAlgorithms.h" />
+    <ClInclude Include="RegMatch.h" />
+    <ClInclude Include="Simulator.h" />
+    <ClInclude Include="SortingAlgorithms.h" />
+    <ClInclude Include="StringAlgorithms.h" />
+    <ClInclude Include="Tree.h" />
+    <ClInclude Include="TreeGraphAlgorithms.h" />
+    <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="Utilities.h" />
+    <ClInclude Include="WarGame.h" />
+    <ClInclude Include="Practice1.h" />
+    <ClInclude Include="LinkedList_C.h" />
+    <ClInclude Include="hackerrank.h" />
   </ItemGroup>
 </Project>

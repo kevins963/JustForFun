@@ -24,7 +24,7 @@ public:
     int FindNextPalindroneNumber( int num );
 
     void TestFindMaxKnapsackCost( void );
-    vector<sKnapsackItem> FindMaxKnapsackCost( int maxWeight );
+    vector<sKnapsackItem> FindMaxKnapsackCost( vector<sKnapsackItem> &items, int maxWeight );
 };
 
 void CodeChef::TestAll( void )
@@ -83,7 +83,9 @@ Create a weight/cost table
 */
 vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &items, int maxWeight )
 {
-    std::sort( items.begin(), items.end(), SortKnapsackItem );
+    return vector<sKnapsackItem>();
+
+    /*std::sort( items.begin(), items.end(), SortKnapsackItem );
 	
 	vector<vector<int>> costWeightMatrix;
 
@@ -120,14 +122,8 @@ vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &item
 
 	
 	int weight = 0;
-
+    */
 }
-
-vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> items, int maxWeight, int currentIndex )
-{
-
-}
-
 
 bool SortKnapsackItem( const sKnapsackItem & item1, const sKnapsackItem & item2 )
 {
