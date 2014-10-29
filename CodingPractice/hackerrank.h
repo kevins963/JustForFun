@@ -29,7 +29,7 @@ static const int LETTER_SIZE = 26;
 int Hackerrank::DortmundsDilemma( int nameLength, int numUniqueLetters )
 {
     
-    char* str = new char[nameLength];
+    char* str = new char[nameLength + 1];
     // Check that name length is greater than unique letters
     // Create empty string of length nameLength
     // Recursively add current letter and start from beginning then add next letter
@@ -42,49 +42,47 @@ int Hackerrank::DortmundsDilemma( int nameLength, int numUniqueLetters )
 
 int Hackerrank::DortmundsDilemmaCombine( char* str, int nameLength, int numUniqueLetters, int currentLength, int currentUniqueLetters, int letterPos )
 {
-
+	int total = 0;
     //if ready to evaluate check 
-    if( currentLength > nameLength)
+    if( currentLength > nameLength )
     {
         return 0;
     }
 
-    if( currentLength == nameLength )
-    {
-        if( currentUniqueLetters ==  numUniqueLetters )
-        {
-            return 1;
-        }
-        else
-        {
-            return 0;
-        }
-    }
-
     //Now recursively try next letter if you can
-    int total1 = 0;
-    if( letterPos < ( LETTER_SIZE - 1 ) )
-    {
-        total1 = DortmundsDilemmaCombine( str, nameLength, numUniqueLetters, currentLength, currentUniqueLetters, letterPos + 1 );
-    }
 
-    char isUnique = 1;
-    for( int index = 0; index < currentLength && isUnique; index++ )
-    {
-        if( letters[letterPos] == str[index] )
-        {
-            isUnique = 0;
-        }
-    }
+	for( int i = 0; i < LETTER_SIZE; i++)
+	{
+		char isUnique = 1;
+		for( int index = 0; index < currentLength && isUnique; index++ )
+		{
+			if( letters[letterPos] == str[index] )
+			{
+				isUnique = 0;
+			}
+		}	
 
-    str[currentLength] = letters[letterPos];
+		str[currentLength] = letters[letterPos];
 
-    //Try next position in the string
-    int total2 = DortmundsDilemmaCombine( str, nameLength, numUniqueLetters, currentLength + 1, currentUniqueLetters + isUnique, 0 );
+		//Try next position in the string
+		total += DortmundsDilemmaCombine( str, nameLength, numUniqueLetters, currentLength + 1, currentUniqueLetters + isUnique, 0 );
+	}
 
-    return ( total1 + total2 );
+	if( currentLength == nameLength )
+	{
+		if( currentUniqueLetters == numUniqueLetters )
+		{
+			str[nameLength] = '\0';
+			cout << str << endl;
+			return 1;
+		}
+		else
+		{
+			return 0;
+		}
+	}
 
-    
+	return total;
 }
 
 struct Dortmunds
@@ -105,9 +103,10 @@ void Hackerrank::TestDortmundsDilemma( void )
     cout << "**************TestDortmundsDilemma" << endl;
 
     vector<Dortmunds> tests;
-    tests.push_back( Dortmunds( 1, 1, 0 ) );
-    tests.push_back( Dortmunds( 2, 1, 26 ) );
-    tests.push_back( Dortmunds( 4, 2, 2600 ) );
+    //tests.push_back( Dortmunds( 1, 1, 0 ) );
+    //tests.push_back( Dortmunds( 2, 1, 26 ) );
+	//tests.push_back( Dortmunds( 4, 2, 2600 ) );
+	tests.push_back( Dortmunds( 3, 2, 650 ) );
 
     for ( auto itr = tests.begin(); itr != tests.end(); ++itr )
     {
