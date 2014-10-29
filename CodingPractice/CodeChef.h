@@ -127,7 +127,9 @@ vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &item
 	
 
 	return items;
+    
 }
+*/
 
 bool SortKnapsackItem( const sKnapsackItem & item1, const sKnapsackItem & item2 )
 {
