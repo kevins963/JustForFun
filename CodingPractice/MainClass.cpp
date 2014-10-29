@@ -26,6 +26,7 @@
 #include "Practice1.h"
 #include "LinkedList_C.h"
 #include "hackerrank.h"
+#include "MathProblems.h"
 
 using namespace std;
 
@@ -104,6 +105,9 @@ MainClass::MainClass(void)
     CodeChef chefCode;
     chefCode.TestAll();
 
+	MathProblems mathProblems;
+	mathProblems.TestAll();
+
     RunFileIo();
 
     Practice1 practice;
@@ -114,7 +118,7 @@ MainClass::MainClass(void)
 
     Hackerrank hackerrank;
     hackerrank.TestAll();
-    
+
 }
 
 void MainClass::RunFileIo()

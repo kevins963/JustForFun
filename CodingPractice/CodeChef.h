@@ -81,6 +81,8 @@ void CodeChef::TestFindMaxKnapsackCost( void )
 /*
 Create a weight/cost table
 */
+
+/*
 vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &items, int maxWeight )
 {
     return vector<sKnapsackItem>();
@@ -97,13 +99,13 @@ vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &item
 		{
 			if( itemCount == 0 || currentWeight == 0 )
 			{
-				if( items[i-1].weight <= currentWeight )
+				if( items[itemCount-1].weight <= currentWeight )
 				{
-					costWeightMatrix[i][w] = max( items[i-1] + costWeightMatrix[i-1][])
+					costWeightMatrix[itemCount][currentWeight] = max( items[itemCount-1][currentWeight] + costWeightMatrix[itemCount-1][currentWeight])
 				}
 				else
 				{
-					costWeightMatrix[i][w] = costWeightMatrix[i-1][currentWeight];
+					costWeightMatrix[itemCount][currentWeight] = costWeightMatrix[i-1][currentWeight];
 				}
 			}
 		}
@@ -122,7 +124,9 @@ vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &item
 
 	
 	int weight = 0;
-    */
+	
+
+	return items;
 }
 
 bool SortKnapsackItem( const sKnapsackItem & item1, const sKnapsackItem & item2 )

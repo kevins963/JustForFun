@@ -50,5 +50,16 @@
     <ClInclude Include="Practice1.h" />
     <ClInclude Include="LinkedList_C.h" />
     <ClInclude Include="hackerrank.h" />
+    <ClInclude Include="Practice2.h" />
+    <ClInclude Include="CircleBuffer.h" />
+    <ClInclude Include="MathProblems.h" />
+    <ClInclude Include="EffectiveSets.h">
+      <Filter>Codechef</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Codechef">
+      <UniqueIdentifier>{802201ea-1c41-4955-ac98-b6765a53961d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

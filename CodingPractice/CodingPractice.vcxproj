@@ -70,6 +70,7 @@
     <ClInclude Include="BucketSort.h" />
     <ClInclude Include="CardDeck.h" />
     <ClInclude Include="Cards.h" />
+    <ClInclude Include="CircleBuffer.h" />
     <ClInclude Include="ClassA.h" />
     <ClInclude Include="ClassB.h" />
     <ClInclude Include="ClassC.h" />
@@ -77,6 +78,7 @@
     <ClInclude Include="CodeChef.h" />
     <ClInclude Include="CyclicList.h" />
     <ClInclude Include="DataTypes.h" />
+    <ClInclude Include="EffectiveSets.h" />
     <ClInclude Include="F350.h" />
     <ClInclude Include="Fibinocci.h" />
     <ClInclude Include="Graph.h" />
@@ -90,11 +92,13 @@
     <ClInclude Include="ListNode.h" />
     <ClInclude Include="MainClass.h" />
     <ClInclude Include="Malloc.h" />
+    <ClInclude Include="MathProblems.h" />
     <ClInclude Include="MergeSort.h" />
     <ClInclude Include="Palandromic.h" />
     <ClInclude Include="ParkingLot.h" />
     <ClInclude Include="ParkingSpot.h" />
     <ClInclude Include="Practice1.h" />
+    <ClInclude Include="Practice2.h" />
     <ClInclude Include="Prius.h" />
     <ClInclude Include="QuickSort.h" />
     <ClInclude Include="RecursionAlgorithms.h" />
