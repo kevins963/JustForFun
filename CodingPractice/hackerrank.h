@@ -11,6 +11,7 @@ public:
     void TestDortmundsDilemma( void );
     int DortmundsDilemma( int nameLength, int numUniqueLetters );
     int DortmundsDilemmaCombine( char* str, int nameLength, int numUniqueLetters, int currentLength, int currentUniqueLetters, int letterPos );
+	int DortmundsDilemmaCombine( char* str, const int nameLength, const int uniqueLetterTarget, int strPos, int strCount, int totalUniqueLetters );
 };
 
 /*
@@ -40,6 +41,55 @@ int Hackerrank::DortmundsDilemma( int nameLength, int numUniqueLetters )
     return total;
 }
 
+/*
+check if invalid
+ return 0
+check if ready to evaluate
+ return 1 or 0
+
+ for each letter index 0 -> Length / 2 make suffix/prefix out of current index
+ ex length = 4 , currentLength = 1, s[0], p[3]
+ Find all combos in between
+
+*/
+int Hackerrank::DortmundsDilemmaCombine( char* str, const int nameLength, const int uniqueLetterTarget, int strPos, int strCount, int totalUniqueLetters )
+{
+	int total = 0;
+
+	if( strCount > nameLength )
+	{
+		return 0;
+	}
+
+	if( strCount == nameLength )
+	{
+		if( uniqueLetterTarget == totalUniqueLetters )
+		{
+			return 1;
+		}
+
+		return 0;
+	}
+
+	for( int i = 0; i < LETTER_SIZE; i++)
+	{
+		char isUnique = 1;
+		for( int index = 0; index <= strPos && isUnique; index++ )
+		{
+			if( letters[i] == str[index] )
+			{
+				isUnique = 0;
+			}
+		}	
+
+		str[strPos] = letters[i];
+
+		//Try next position in the string
+		total += DortmundsDilemmaCombine( str, nameLength, uniqueLetterTarget, strPos + 1, (strPos + 1) * 2, totalUniqueLetters + isUnique );
+	}
+
+	return total;
+}
 int Hackerrank::DortmundsDilemmaCombine( char* str, int nameLength, int numUniqueLetters, int currentLength, int currentUniqueLetters, int letterPos )
 {
 	int total = 0;
