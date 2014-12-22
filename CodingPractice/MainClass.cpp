@@ -26,6 +26,7 @@
 #include "Practice1.h"
 #include "LinkedList_C.h"
 #include "hackerrank.h"
+#include "SelectionAlgorithms.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -119,6 +120,8 @@ MainClass::MainClass(void)
     Hackerrank hackerrank;
     hackerrank.TestAll();
 
+    SelectionAlgorithms selectionAlgorithms;
+    selectionAlgorithms.TestAll();
 }
 
 void MainClass::RunFileIo()
