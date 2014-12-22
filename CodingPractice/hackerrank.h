@@ -10,8 +10,9 @@ public:
     /* Dynamic */
     void TestDortmundsDilemma( void );
     int DortmundsDilemma( int nameLength, int numUniqueLetters );
-    int DortmundsDilemmaCombine( char* str, int nameLength, int numUniqueLetters, int currentLength, int currentUniqueLetters, int letterPos );
+    //int DortmundsDilemmaCombine( char* str, int nameLength, int numUniqueLetters, int currentLength, int currentUniqueLetters, int letterPos );
 	int DortmundsDilemmaCombine( char* str, const int nameLength, const int uniqueLetterTarget, int strPos, int strCount, int totalUniqueLetters );
+    int FillAllCombo( char* str, const int nameLength, const int uniqueLetterTarget, int strPos, int strCount, int totalUniqueLetters);
 };
 
 /*
@@ -56,26 +57,17 @@ int Hackerrank::DortmundsDilemmaCombine( char* str, const int nameLength, const 
 {
 	int total = 0;
 
-	if( strCount > nameLength )
+	if( strCount >= nameLength )
 	{
 		return 0;
 	}
 
-	if( strCount == nameLength )
-	{
-		if( uniqueLetterTarget == totalUniqueLetters )
-		{
-			return 1;
-		}
-
-		return 0;
-	}
 
 	for( int i = 0; i < LETTER_SIZE; i++)
 	{
 		char isUnique = 1;
-		for( int index = 0; index <= strPos && isUnique; index++ )
-		{
+		for( int index = 0; index < strPos && isUnique; index++ )
+		{           
 			if( letters[i] == str[index] )
 			{
 				isUnique = 0;
@@ -85,55 +77,69 @@ int Hackerrank::DortmundsDilemmaCombine( char* str, const int nameLength, const 
 		str[strPos] = letters[i];
 
 		//Try next position in the string
-		total += DortmundsDilemmaCombine( str, nameLength, uniqueLetterTarget, strPos + 1, (strPos + 1) * 2, totalUniqueLetters + isUnique );
+	    total += DortmundsDilemmaCombine( str, nameLength, uniqueLetterTarget, strPos + 1, (strPos + 1) * 2, totalUniqueLetters + isUnique );
+
+        for( int index = 0; index <= strPos && isUnique; index++ )
+        {
+            str[nameLength - ( 1 + strPos ) + index ] = str[index];
+        }	
+        total += FillAllCombo( str, nameLength, uniqueLetterTarget, strPos + 1, (strPos + 1) * 2, totalUniqueLetters + isUnique );
 	}
+
+    if(total > 0)
+        cout << endl;   
 
 	return total;
 }
-int Hackerrank::DortmundsDilemmaCombine( char* str, int nameLength, int numUniqueLetters, int currentLength, int currentUniqueLetters, int letterPos )
+
+int Hackerrank::FillAllCombo( char* str, const int nameLength, const int uniqueLetterTarget, int strPos, int strCount, int totalUniqueLetters)
 {
-	int total = 0;
-    //if ready to evaluate check 
-    if( currentLength > nameLength )
+    if( strCount > nameLength )
     {
         return 0;
     }
 
-    //Now recursively try next letter if you can
+    if( strCount == nameLength )
+    {
+        if( uniqueLetterTarget == totalUniqueLetters )
+        {
+            str[nameLength] = '\0';
+            cout << str << ", ";
+            return 1;
+        }
 
-	for( int i = 0; i < LETTER_SIZE; i++)
-	{
-		char isUnique = 1;
-		for( int index = 0; index < currentLength && isUnique; index++ )
-		{
-			if( letters[letterPos] == str[index] )
-			{
-				isUnique = 0;
-			}
-		}	
+        return 0;
+    }
 
-		str[currentLength] = letters[letterPos];
+    int total = 0;
 
-		//Try next position in the string
-		total += DortmundsDilemmaCombine( str, nameLength, numUniqueLetters, currentLength + 1, currentUniqueLetters + isUnique, 0 );
-	}
+    for( int i = 0; i < LETTER_SIZE; i++)
+    {
+        char isDuplicatConflict = 0;
 
-	if( currentLength == nameLength )
-	{
-		if( currentUniqueLetters == numUniqueLetters )
-		{
-			str[nameLength] = '\0';
-			cout << str << endl;
-			return 1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
+        char isUnique = 1;
+        for( int index = 0; index < strPos && isUnique; index++ )
+        {
+            if( letters[i] == str[index] )
+            {
+                isUnique = 0;
+            }
+        }	
 
-	return total;
+        str[strPos] = letters[i];
+
+        for( int index = 0; index <= strPos && isUnique; index++ )
+        {
+            str[nameLength - ( 1 + strPos ) + index ] = str[index];
+        }
+        //Try next position in the string
+        total += FillAllCombo( str, nameLength, uniqueLetterTarget, strPos + 1, strCount + 1, totalUniqueLetters + isUnique );
+
+    }
+
+    return total;
 }
+
 
 struct Dortmunds
 {
@@ -153,10 +159,15 @@ void Hackerrank::TestDortmundsDilemma( void )
     cout << "**************TestDortmundsDilemma" << endl;
 
     vector<Dortmunds> tests;
-    //tests.push_back( Dortmunds( 1, 1, 0 ) );
-    //tests.push_back( Dortmunds( 2, 1, 26 ) );
+ //   tests.push_back( Dortmunds( 1, 1, 0 ) );
+ //   tests.push_back( Dortmunds( 2, 1, 26 ) );
 	//tests.push_back( Dortmunds( 4, 2, 2600 ) );
-	tests.push_back( Dortmunds( 3, 2, 650 ) );
+	//tests.push_back( Dortmunds( 3, 2, 650 ) );
+ //   tests.push_back( Dortmunds( 2, 2, 0 ) );
+    tests.push_back( Dortmunds( 5, 1, 26 ) );
+ //   tests.push_back( Dortmunds( 6, 2, 13650 ) );
+ //   tests.push_back( Dortmunds( 1, 3, 0 ) );
+
 
     for ( auto itr = tests.begin(); itr != tests.end(); ++itr )
     {

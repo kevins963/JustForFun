@@ -103,6 +103,7 @@
     <ClInclude Include="QuickSort.h" />
     <ClInclude Include="RecursionAlgorithms.h" />
     <ClInclude Include="RegMatch.h" />
+    <ClInclude Include="SelectionAlgorithms.h" />
     <ClInclude Include="Simulator.h" />
     <ClInclude Include="SortingAlgorithms.h" />
     <ClInclude Include="StringAlgorithms.h" />
