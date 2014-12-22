@@ -10,7 +10,7 @@ public:
 private:
     void TestQuickSelection( void );
     int QuickSelection( int* inArray, int kthMinValue, int leftIndex, int rightIndex );
-    int QuickSelectionPivotSort( int* inArray, int leftIndex, int rightIndex );
+    int QuickSelectionPivotSort( int* inArray, int leftIndex, int rightIndex, int indexToPivot );
 };
 
 void SelectionAlgorithms::TestAll( void )
@@ -70,7 +70,8 @@ int SelectionAlgorithms::QuickSelection( int* inArray, int kthMinValue, int left
         return -1;
     }
 
-    int pivotIndex = QuickSelectionPivotSort( inArray, leftIndex, rightIndex );
+    //Just choose middle value
+    int pivotIndex = QuickSelectionPivotSort( inArray, leftIndex, rightIndex, ( leftIndex + rightIndex ) / 2 );
 
     if( kthMinValue == ( pivotIndex + 1 ) )
     {
@@ -112,10 +113,15 @@ int SelectionAlgorithms::QuickSelection( int* inArray, int kthMinValue, int left
 //    return inArray[pivotIndex];
 //}
 
-int SelectionAlgorithms::QuickSelectionPivotSort( int* inArray, int leftIndex, int rightIndex )
+int SelectionAlgorithms::QuickSelectionPivotSort( int* inArray, int leftIndex, int rightIndex, int indexToPivot )
 {
     //Put all values less than pivotIndex to left all else to right
-    
+    {
+        int temp = inArray[indexToPivot];
+        inArray[indexToPivot] = inArray[rightIndex];
+        inArray[rightIndex] = temp;
+    }
+    //put pivot value to end
     int pivotIndex = leftIndex;
 
     for( int i = leftIndex; i < rightIndex; i++ )
