@@ -56,6 +56,7 @@
     <ClInclude Include="EffectiveSets.h">
       <Filter>Codechef</Filter>
     </ClInclude>
+    <ClInclude Include="alg_design_graph.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codechef">

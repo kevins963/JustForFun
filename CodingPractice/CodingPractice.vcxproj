@@ -64,6 +64,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="alg_design_graph.h" />
     <ClInclude Include="AmazonCode.h" />
     <ClInclude Include="AmazonTestRun.h" />
     <ClInclude Include="BitManipulationAlg.h" />
