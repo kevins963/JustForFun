@@ -122,6 +122,9 @@ MainClass::MainClass(void)
 
     SelectionAlgorithms selectionAlgorithms;
     selectionAlgorithms.TestAll();
+
+	Heapsort heapsort;
+	heapsort.Test();
 }
 
 void MainClass::RunFileIo()
