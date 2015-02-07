@@ -63,7 +63,7 @@ void Heapsort::PerculateUpMax( int * inArray, int index, int size )
 
 	//case statement at root
 
-	if( index == 0 )
+	if( index <= 0 )
 	{
 		return;
 	}
@@ -91,13 +91,13 @@ void Heapsort::PerculateDownMax(int * inArray, int index, int size)
 	int maxIndex = index;
 	int leftSiblingIndex = index * 2 + 1;
 	int rightSiblingIndex = index * 2 + 2;
-	if( inArray[maxIndex] > inArray[leftSiblingIndex] && 
+	if( inArray[maxIndex] < inArray[leftSiblingIndex] && 
 		leftSiblingIndex < size )
 	{
 		maxIndex = leftSiblingIndex;
 	}
 
-	if( inArray[maxIndex] > inArray[rightSiblingIndex] && 
+	if( inArray[maxIndex] < inArray[rightSiblingIndex] && 
 		rightSiblingIndex < size )
 	{
 		maxIndex = rightSiblingIndex;
