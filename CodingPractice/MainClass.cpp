@@ -27,6 +27,8 @@
 #include "LinkedList_C.h"
 #include "hackerrank.h"
 #include "SelectionAlgorithms.h"
+#include "DynamicProblems.h"
+#include "BinarySearchProblems.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -125,6 +127,12 @@ MainClass::MainClass(void)
 
 	Heapsort heapsort;
 	heapsort.Test();
+
+	DynamicProblems dynamicProblems;
+	dynamicProblems.TestAll();
+
+	BinarySearchProblems binarySearchProblems;
+	binarySearchProblems.TestAll();
 }
 
 void MainClass::RunFileIo()

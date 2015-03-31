@@ -26,7 +26,8 @@ public:
     bool HasSubstring(string input, string findString );
     string HasSubstringDisregardNonChar(string input, string findString );
 	bool IsAnagram( string* string1, string* string2 );
-    
+    string GetLongestIncreasingSubstring( const string & inString );
+	string MultiplyBigIntWithString( string a, string b );
 
 private:
     void TestAreAllCharactersUnique( void );
@@ -37,6 +38,9 @@ private:
     void TestHasSubstringDisregardNonChar( void );
     void TestRemoveAllDuplicateCharsNoExtraBufferKeys( void );
 	void TestIsAnagram( void );
+	void TestGetLongestIncreasingSubstring( void );
+	void TestMultiplyBigIntWithString( void );
+
 };
 
 
@@ -50,6 +54,7 @@ void StringAlgorithms::TestAll( void )
     TestHasSubstringDisregardNonChar();
     TestRemoveAllDuplicateCharsNoExtraBufferKeys();
 	TestIsAnagram();
+	TestGetLongestIncreasingSubstring();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -469,6 +474,105 @@ bool StringAlgorithms::IsAnagram(string* string1, string* string2)
 
 	return isAnagram;
 	
+}
+
+void StringAlgorithms::TestGetLongestIncreasingSubstring(void)
+{
+	vector<pair<string,string>> tests;
+
+	tests.push_back( make_pair( "abc", "abc" ) );
+	tests.push_back( make_pair( "aabc", "abc" ) );
+	tests.push_back( make_pair( "aabcc", "abc" ) );
+	tests.push_back( make_pair( "aabccabcda", "abcd" ) );
+
+	for( auto itr = tests.begin(); itr != tests.end(); itr++ )
+	{
+		string result = GetLongestIncreasingSubstring( itr->first );
+
+		printf( "in=%s, ex=%s, act=%s, pass=%d\n", itr->first.c_str(), itr->second.c_str(), result.c_str(), itr->second.compare( result ) == 0 );
+	}
+}
+
+/*
+To do this simple search store first index and last index of sequence, replace with longest sequence.
+*/
+std::string StringAlgorithms::GetLongestIncreasingSubstring(const string & inString)
+{
+	int startMax = -1;
+	int endMax = -1;
+	int count = 0;
+	
+	// [0,1,2,3,4]
+	// 
+	for( int index = 0; index < inString.length() - 1; index++ )
+	{
+		if( inString[ index ] < inString[ index + 1 ] )
+		{
+			count++;
+		}
+		else
+		{
+			if( count > ( endMax - startMax ) )
+			{
+				startMax = index - count;
+				endMax = index;
+				count = 0;
+			}
+		}
+	}
+
+	//if goes to in save
+	if( count > ( endMax - startMax ) )
+	{
+		startMax = inString.length() - ( count + 1 );
+		endMax = inString.length() - 1;
+	}
+
+	string out;
+
+	if( startMax != -1 )
+	{
+		out = inString.substr( startMax, endMax - startMax + 1 );
+	}
+	else
+	{
+		out = "";
+	}
+
+	return out;
+}
+
+/*
+to multiply string need to convert to a single digit and hold offset
+*/
+void StringAlgorithms::TestMultiplyBigIntWithString(void)
+{
+
+}
+
+std::string StringAlgorithms::MultiplyBigIntWithString(string a, string b)
+{
+	//int size = ( a.length() > b.length() ) ? a.length() : b.length();
+
+	//max size is 2 x length
+	string product = string( a.length() + b.length(), '0' );
+
+	//get digit should mult each, and add to current spot
+	for( int i = 0; i < a.length() ; i++ )
+	{
+		int carryOver = 0;
+		int valA = (int)( a[i] - '0' );
+
+		for( int j = 0; j < b.length(); j++ )
+		{	
+			int valB = (int)( b[j] - '0' );
+			int offset = i+j;
+			int currentProd = (int)( product[offset] - '0' );
+			int prod = valA * valB + carryOver + currentProd;
+			
+			//get tens and ones, tens carryover, ones goes to array
+		}
+	}
 }
 
 #endif // !STRING_ALGORITHMS_H__

@@ -57,6 +57,10 @@
       <Filter>Codechef</Filter>
     </ClInclude>
     <ClInclude Include="alg_design_graph.h" />
+    <ClInclude Include="SelectionAlgorithms.h" />
+    <ClInclude Include="BucketSorting.h" />
+    <ClInclude Include="DynamicProblems.h" />
+    <ClInclude Include="BinarySearchProblems.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codechef">
