@@ -46,9 +46,14 @@ public:
 	1 ≤ length of string ≤ 100005 
 	All characters are latin lower case indexed. 
 	Sample Input #00 
-	3	aaab	baa	aaa
+	3
+	aaab
+	baa
+	aaa
 	Sample Output #00 
-	3	0	0
+	3
+	0
+	0
 	Explanation 
 	In the given input, T = 3, 
 	• For input aaab, we can see that removing b from the string makes the string a palindrome, hence the position 3. 
