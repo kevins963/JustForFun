@@ -60,7 +60,7 @@ void WarCame::RunGame()
         cout << "p1=" << _playerOne.size() << "p2=" << _playerTwo.size() << endl;
     }
 
-    cout << "Complete, Winner:  " << _playerOne.size() > 0 ? "Player One" : "Player Two";
+    cout << "Complete, Winner:  " << ( _playerOne.size() > 0 ) ? "Player One" : "Player Two";
     cout << endl;
 
 }

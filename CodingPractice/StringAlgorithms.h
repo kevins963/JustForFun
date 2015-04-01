@@ -55,6 +55,7 @@ void StringAlgorithms::TestAll( void )
     TestRemoveAllDuplicateCharsNoExtraBufferKeys();
 	TestIsAnagram();
 	TestGetLongestIncreasingSubstring();
+    TestMultiplyBigIntWithString();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -547,7 +548,10 @@ to multiply string need to convert to a single digit and hold offset
 */
 void StringAlgorithms::TestMultiplyBigIntWithString(void)
 {
+    
+    string result = MultiplyBigIntWithString( "98", "2" );
 
+    printf( "result = %s", result.c_str() );
 }
 
 std::string StringAlgorithms::MultiplyBigIntWithString(string a, string b)
@@ -556,23 +560,41 @@ std::string StringAlgorithms::MultiplyBigIntWithString(string a, string b)
 
 	//max size is 2 x length
 	string product = string( a.length() + b.length(), '0' );
-
+    // 98 x 2
+    // 016
+    // 180
+    // 196
 	//get digit should mult each, and add to current spot
 	for( int i = 0; i < a.length() ; i++ )
 	{
 		int carryOver = 0;
-		int valA = (int)( a[i] - '0' );
+        int valA = ( int )( a[ a.length() - i - 1] - '0' );
 
 		for( int j = 0; j < b.length(); j++ )
 		{	
-			int valB = (int)( b[j] - '0' );
-			int offset = i+j;
-			int currentProd = (int)( product[offset] - '0' );
-			int prod = valA * valB + carryOver + currentProd;
-			
+            int valB = ( int )( b[ b.length( ) -j - 1 ] - '0' );
+			int offset = i+j;           
+            int prod = valA * valB + carryOver;
+
 			//get tens and ones, tens carryover, ones goes to array
+            while( prod )
+            {
+                int currentProd = ( int )( product[ offset ] - '0' );
+                prod += currentProd;
+                product[ offset++ ] = '0' + prod % 10;
+                prod /= 10;
+            }           
 		}
 	}
+    
+    string output = string( product.size(), ' ' );
+
+    for( auto ritr = product.rbegin(); ritr != product.rend(); ritr++ )
+    {
+        output.push_back( *ritr );
+    }
+
+    return output;
 }
 
 #endif // !STRING_ALGORITHMS_H__

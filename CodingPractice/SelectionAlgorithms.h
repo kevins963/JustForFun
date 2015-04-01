@@ -136,7 +136,7 @@ int SelectionAlgorithms::QuickSelectionPivotSort( int* inArray, int leftIndex, i
         }
     }
 
-    int temp = inArray[pivotIndex];
+    temp = inArray[pivotIndex];
     inArray[pivotIndex] = inArray[rightIndex];
     inArray[rightIndex] = temp;
 

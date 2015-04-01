@@ -91,7 +91,7 @@ void LinkedListAlgorithms::TestCreateList( void )
 
     ListNode* list = CreateListFromArray( t1, 5 );
 
-    cout < ">>>> Create List Test";
+    cout << ">>>> Create List Test";
 
     cout << "Result = ";
     PrintArray( t1, 0, 5, true );
