@@ -29,6 +29,7 @@
 #include "SelectionAlgorithms.h"
 #include "DynamicProblems.h"
 #include "BinarySearchProblems.h"
+#include "GraphTypeProblems.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -133,6 +134,9 @@ MainClass::MainClass(void)
 
 	BinarySearchProblems binarySearchProblems;
 	binarySearchProblems.TestAll();
+
+	GraphTypeProblems graphTypeProblems;
+	graphTypeProblems.TestAll();
 }
 
 void MainClass::RunFileIo()

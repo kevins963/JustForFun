@@ -13,6 +13,7 @@ namespace CodingPracticeCSharp
             Program thisApp = new Program();
             Console.WriteLine("CSharp Code Practice");
             thisApp.RunSorting();
+
             while (true) { };
         }
 
@@ -23,6 +24,10 @@ namespace CodingPracticeCSharp
             BubbleSort bubbleSort = new BubbleSort();
 
             bubbleSort.Sort(someArray);
+
+            KnapsackAlg knapsackalg = new KnapsackAlg();
+            knapsackalg.RunTest();
+
         }
     }
 }

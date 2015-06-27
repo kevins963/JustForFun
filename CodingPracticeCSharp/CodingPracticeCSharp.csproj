@@ -45,6 +45,7 @@
     <Compile Include="Elevator\ElevatorButton.cs" />
     <Compile Include="Elevator\ElevatorRun.cs" />
     <Compile Include="Elevator\ElevatorSystem.cs" />
+    <Compile Include="KnapsackAlg.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -28,6 +28,10 @@ public:
 	bool IsAnagram( string* string1, string* string2 );
     string GetLongestIncreasingSubstring( const string & inString );
 	string MultiplyBigIntWithString( string a, string b );
+	string RunLengthEncoding( string input );
+	string GetLongestCommonSubstringDynamic( const string & input, const string & pattern );
+	string GetLongestCommonSubsequenceDynamic( const string & input, const string & pattern );
+	bool IsPatternInString( const string & input, const string & pattern );
 
 private:
     void TestAreAllCharactersUnique( void );
@@ -40,7 +44,10 @@ private:
 	void TestIsAnagram( void );
 	void TestGetLongestIncreasingSubstring( void );
 	void TestMultiplyBigIntWithString( void );
-
+	void TestRunLengthEncoding( void );
+	void TestGetLongestCommonSubstringDynamic( void );
+	void TestGetLongestCommonSubsequenceDynamic( void );
+	void TestIsPatternInString( void );
 };
 
 
@@ -56,6 +63,9 @@ void StringAlgorithms::TestAll( void )
 	TestIsAnagram();
 	TestGetLongestIncreasingSubstring();
     TestMultiplyBigIntWithString();
+	TestRunLengthEncoding();
+	TestGetLongestCommonSubstringDynamic();
+	TestGetLongestCommonSubsequenceDynamic();
 }
 
 void StringAlgorithms::TestAreAllCharactersUnique( void )
@@ -549,7 +559,7 @@ to multiply string need to convert to a single digit and hold offset
 void StringAlgorithms::TestMultiplyBigIntWithString(void)
 {
     
-    string result = MultiplyBigIntWithString( "98", "2" );
+    string result = MultiplyBigIntWithString( "123456789", "123456789" );
 
     printf( "result = %s", result.c_str() );
 }
@@ -587,14 +597,267 @@ std::string StringAlgorithms::MultiplyBigIntWithString(string a, string b)
 		}
 	}
     
-    string output = string( product.size(), ' ' );
+    string output;
 
     for( auto ritr = product.rbegin(); ritr != product.rend(); ritr++ )
     {
-        output.push_back( *ritr );
+		output.push_back( *ritr );
     }
 
     return output;
+}
+
+void StringAlgorithms::TestRunLengthEncoding(void)
+{
+	vector<pair<string, string>> tests;
+
+	tests.push_back( make_pair( "abbcccddddeeeee", "a2b3c4d5e" ) );
+	tests.push_back( make_pair( "abbcdddeffff", "a2bc3de4f" ) );
+
+	for( auto itr = tests.begin(); itr != tests.end(); itr++ )
+	{
+		string result = RunLengthEncoding( itr->first );
+
+		printf( "in=%s, ex=%s, rslt=%s, pass=%0d\n", itr->first.c_str(), itr->second.c_str(), result.c_str(), result.compare( itr->second ) == 0 );
+	}
+}
+
+/*
+Run Length Encoding is a way to suppress string with repeated letters
+abbcccddddeeeee
+a2b3c4d5e
+use an index start/end to get count
+*/
+std::string StringAlgorithms::RunLengthEncoding(string input)
+{
+	char num[10];
+	int size;
+
+	string output;
+
+	int startIndex = 0;
+
+	for( int i = 0; i < input.size(); i++ )
+	{
+		if( input[startIndex] != input[i] )
+		{
+			if( i - startIndex > 1 )
+			{
+				size = sprintf_s(num, 10, "%d", i - startIndex );
+				output.append( num, &num[size] );
+			}
+
+			
+			output.push_back( input[startIndex] );
+
+			startIndex = i;
+		}
+	}
+
+	//get last char
+	int lastIndex = input.length() - 1;
+
+	if( lastIndex - startIndex > 1 )
+	{
+		size = sprintf_s(num, 10, "%d", lastIndex - startIndex + 1 );
+		output.append( num, &num[size] );
+	}
+
+	output.push_back( input[startIndex] );
+
+	return output;
+}
+
+/*
+To find the long common substring using dynamic programming, setup a table MxN to show the longest string.
+If
+*/
+
+#define GET_INDEX_2D( cols, rowIndex, colIndex ) ( (colIndex) + ( (rowIndex) * (cols) ) )
+
+std::string StringAlgorithms::GetLongestCommonSubstringDynamic(const string & input, const string & pattern )
+{
+	string out;
+	
+	int maxMatch = 0;
+	int startIndex;
+	int rows = pattern.size() + 1;
+	int cols = input.size() + 1;
+
+	int *matchArray = new int[ (rows) * ( cols ) ];
+
+	for( int i = 0; i < input.size() + 1; i++ )
+	{
+		for( int j=0; j < pattern.size() + 1; j++ )
+		{
+			//printf( "[%d][%d] = %d\n", i, j, GET_INDEX_2D( cols, j, i  ) );
+			if( i == 0 || j == 0 )
+			{
+				matchArray[ GET_INDEX_2D( cols, j, i ) ] = 0;
+			}
+			else if( input[i - 1] == pattern[j - 1] )
+			{
+				int matchSize = 1 + matchArray[ GET_INDEX_2D( cols, j - 1, i - 1  ) ];
+				matchArray[ GET_INDEX_2D( cols, j, i ) ] = matchSize; 
+				//TODO set start end if maxMAtch is the new max size 
+				if( maxMatch < matchSize )
+				{
+					maxMatch = matchSize;
+					startIndex = j - matchSize;
+				}
+			} 
+			else
+			{
+				matchArray[ GET_INDEX_2D( cols, j, i ) ] = 0;
+			}
+		}
+	}
+
+	delete matchArray;
+
+	return string( pattern.begin() + startIndex, pattern.begin() + startIndex + maxMatch );
+}
+
+void StringAlgorithms::TestGetLongestCommonSubstringDynamic(void)
+{
+	vector<pair<pair<string,string>,string>> tests;
+
+	tests.push_back( make_pair( make_pair( "ababccd", "abcd" ), "abc" ) );
+	tests.push_back( make_pair( make_pair( "abcdefghijklmnopqrstuvwxyz", "abaabchlmnopqrlztuvq" ), "lmnopqr" ) );
+
+	cout << "**************LONG COMMON SUBSTRING ******************" << endl;
+
+	for( auto itr = tests.begin(); itr != tests.end(); itr++ )
+	{
+		auto result = GetLongestCommonSubstringDynamic( itr->first.first, itr->first.second );
+
+		printf( "in: s=%s, p=%s, out=%s, exp=%s, pass=%d\n",itr->first.first.c_str(), itr->first.second.c_str(), result.c_str(), itr->second.c_str(),result.compare( itr->second ) == 0  );
+	}
+}
+
+void StringAlgorithms::TestGetLongestCommonSubsequenceDynamic(void)
+{
+	vector<pair<pair<string,string>,string>> tests;
+
+	tests.push_back( make_pair( make_pair( "ababccd", "abcd" ), "abcd" ) );
+	tests.push_back( make_pair( make_pair( "abcdefghij", "jedfiabbj" ), "efij" ) );
+
+	cout << "**************LONG COMMON SUBSEQUENCE ******************" << endl;
+	for( auto itr = tests.begin(); itr != tests.end(); itr++ )
+	{
+		auto result = GetLongestCommonSubsequenceDynamic( itr->first.first, itr->first.second );
+
+		printf( "in: s=%s, p=%s, out=%s, exp=%s, pass=%d\n",itr->first.first.c_str(), itr->first.second.c_str(), result.c_str(), itr->second.c_str(),result.compare( itr->second ) == 0  );
+	}
+}
+/*
+To find the long common subsequence using dynamic programming, subsquence can be non continious. 
+Similar to substring setup a table MxN to show the longest string.
+pull down largest from top or left to new cell
+*/
+std::string StringAlgorithms::GetLongestCommonSubsequenceDynamic(const string & input, const string & pattern )
+{
+	string out;
+
+	int maxMatch = 0;
+	int startIndex;
+	int rows = pattern.size() + 1;
+	int cols = input.size() + 1;
+
+	int *matchArray = new int[ (rows) * ( cols ) ];
+
+	for( int iCol = 0; iCol < input.size() + 1; iCol++ )
+	{
+		for( int jRow=0; jRow < pattern.size() + 1; jRow++ )
+		{
+			//If found add to the previous match( i-1, j-1)
+			//if not found carry down the current value( i-1, j)
+			//printf( "[%d][%d] = %d\n", i, j, GET_INDEX_2D( cols, j, i  ) );
+			if( iCol == 0 || jRow == 0 )
+			{
+				matchArray[ GET_INDEX_2D( cols, jRow, iCol ) ] = 0;
+			}
+			else if( input[iCol - 1] == pattern[jRow - 1] )
+			{
+				int matchSize = 1 + matchArray[ GET_INDEX_2D( cols, jRow - 1, iCol - 1  ) ];
+				matchArray[ GET_INDEX_2D( cols, jRow, iCol ) ] = matchSize; 
+				//TODO set start end if maxMAtch is the new max size 
+				if( maxMatch < matchSize )
+				{
+					maxMatch = matchSize;
+					startIndex = jRow - matchSize;
+				}
+			} 
+			else
+			{
+				//keep the largest from top or left
+				matchArray[ GET_INDEX_2D( cols, jRow, iCol ) ] = max( matchArray[ GET_INDEX_2D( cols, jRow - 1, iCol ) ], matchArray[ GET_INDEX_2D( cols, jRow, iCol - 1 ) ] );
+			}
+		}
+	}
+
+	//Now find the lartgest match search the bottom row and get the highest value, then to find the string
+	//follow the if([i-1][j-1] == [i][j] - 1) then it is match so that the currenbt letter at [i][j]
+
+	//get max col
+	int maxCol = 0;
+	for( int col = 1; col < cols; col++ )
+	{
+		if( matchArray[ GET_INDEX_2D( cols, rows - 1, col ) ] > matchArray[ GET_INDEX_2D( cols, rows - 1, maxCol ) ] )
+		{
+			maxCol = col;
+		}
+	}
+
+	string subsequence = string( matchArray[ GET_INDEX_2D( cols, rows - 1, maxCol ) ], ' ' );
+	
+	//now follow the path back
+	int subsequenceIndex = subsequence.length() - 1;
+	int rowIndex = rows - 1;
+	int colIndex = maxCol;
+
+	while( matchArray[ GET_INDEX_2D( cols, rowIndex, colIndex ) ] > 0 )
+	{
+		if( matchArray[ GET_INDEX_2D( cols, rowIndex, colIndex ) ] == matchArray[ GET_INDEX_2D( cols, rowIndex, colIndex - 1 ) ] )
+		{
+			colIndex--;
+		}
+		else if( matchArray[ GET_INDEX_2D( cols, rowIndex, colIndex ) ] == matchArray[ GET_INDEX_2D( cols, rowIndex - 1, colIndex ) ] )
+		{
+			rowIndex--;
+		}
+		else
+		{
+			subsequence[ subsequenceIndex-- ] = pattern[ rowIndex - 1 ];
+			rowIndex--;
+			colIndex--;
+		}
+	}
+
+	delete matchArray;
+
+	return subsequence;
+}
+
+
+void StringAlgorithms::TestIsPatternInString( void )
+{
+
+}
+
+//Using Boyer-Mayer??? you can get it down to a runtime of O(n)
+//This algorithm allows you to skip to the next possible match
+//First preprocess string to get a skip count for all characters
+//Initial skip count is the length of the pattern
+bool StringAlgorithms::IsPatternInString(const string & input, const string & pattern)
+{
+	//number of indicies to skip on invalid match
+	int skipTable[256];
+
+	//Create Skip Table
+	//for( int i = 0; i <
+
+    return false;
 }
 
 #endif // !STRING_ALGORITHMS_H__

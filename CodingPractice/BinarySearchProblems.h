@@ -11,11 +11,16 @@ public:
 private:
 	void TestIsValueInSortedArray();
 	int IsValueInSortedArray( vector<int> & someArray, int findValue );
+
+
+	void TestFindIndexOfFirstOccuranceSortedArray();
+	int FindIndexOfFirstOccuranceSortedArray( vector<int> & someArray, int findValue );
 };
 
 void BinarySearchProblems::TestAll()
 {
 	TestIsValueInSortedArray();
+	TestFindIndexOfFirstOccuranceSortedArray();
 }
 
 void BinarySearchProblems::TestIsValueInSortedArray()
@@ -86,4 +91,60 @@ int BinarySearchProblems::IsValueInSortedArray(vector<int> & someArray, int find
 	}
 
 	return -1;
+}
+
+void BinarySearchProblems::TestFindIndexOfFirstOccuranceSortedArray()
+{
+
+	cout << "******* BINARY SEARCH TEST: TEST IS VALUE IN SORTED ARRAY" << endl;
+	int arrayEven[] = { 2, 2, 2, 2, 3, 4, 4 ,4, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5 };
+
+	vector<int> testArrayEven = vector<int>( &arrayEven[0], &arrayEven[27] + 1 );
+	vector<pair<int,int>> tests;
+
+	tests.push_back( make_pair( 2, 0 ) );
+	tests.push_back( make_pair( 3, 4) );
+	tests.push_back( make_pair( 4, 5) );
+	tests.push_back( make_pair( 5, 8 ) );
+	
+	for( auto itr = tests.begin(); itr != tests.end(); itr++ )
+	{
+		auto result = FindIndexOfFirstOccuranceSortedArray( testArrayEven, itr->first );
+		printf( "in=%d, exp=%d, result=%d, pass=%d\n", itr->first, itr->second, result, result == itr->second );
+	}
+
+}
+
+/*
+use binary search, whenever m == value save index, and set upper index
+*/
+int BinarySearchProblems::FindIndexOfFirstOccuranceSortedArray(vector<int> & someArray, int findValue)
+{
+	int l=0;
+	int r=someArray.size() - 1;
+	int m;
+
+	int valueIndex = -1;
+
+	while( l <= r )
+	{
+		m = l + (r - l) / 2;
+
+		if( someArray[m] == findValue )
+		{
+			valueIndex = m;
+			r = m - 1;
+		}
+		else if( someArray[m] < findValue )
+		{
+			l = m + 1;
+		}
+		else if( someArray[m] > findValue )
+		{
+			r = m - 1;
+		}
+	}
+
+	return valueIndex;
+
 }
