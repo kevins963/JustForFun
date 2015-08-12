@@ -30,6 +30,7 @@
 #include "DynamicProblems.h"
 #include "BinarySearchProblems.h"
 #include "GraphTypeProblems.h"
+#include "ClassOverrides.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -137,6 +138,9 @@ MainClass::MainClass(void)
 
 	GraphTypeProblems graphTypeProblems;
 	graphTypeProblems.TestAll();
+
+    ClassCopyTest classCopyTest;
+    classCopyTest.RunTests();
 }
 
 void MainClass::RunFileIo()

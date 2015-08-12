@@ -13,6 +13,10 @@ namespace CodingPracticeCSharp
             Program thisApp = new Program();
             Console.WriteLine("CSharp Code Practice");
             thisApp.RunSorting();
+            MinimumCoinToEqual minimumCoinToEqual = new MinimumCoinToEqual();
+            minimumCoinToEqual.RunTests();
+            Multithreading multithreading = new Multithreading();
+            multithreading.RunTests();
 
             while (true) { };
         }

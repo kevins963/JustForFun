@@ -62,6 +62,7 @@
     <ClInclude Include="DynamicProblems.h" />
     <ClInclude Include="BinarySearchProblems.h" />
     <ClInclude Include="GraphTypeProblems.h" />
+    <ClInclude Include="ClassOverrides.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codechef">

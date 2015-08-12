@@ -46,6 +46,8 @@
     <Compile Include="Elevator\ElevatorRun.cs" />
     <Compile Include="Elevator\ElevatorSystem.cs" />
     <Compile Include="KnapsackAlg.cs" />
+    <Compile Include="MinimumCoinToEqual.cs" />
+    <Compile Include="Multithreading.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
