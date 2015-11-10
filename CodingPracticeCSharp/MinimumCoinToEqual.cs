@@ -22,6 +22,10 @@ namespace CodingPracticeCSharp
             int[] coins = {1,5,10,25};
             int[,] tests = { {1,1}, {5,1}, {10,1}, {25,1}, {30,2} };
 
+            for(int i = 0; i < 50; i++ )
+            {
+                Console.WriteLine("input {0} result {1}", i, FindMinCoinsForChange(i, coins));
+            }
             int result = FindMinCoinsForChange( 33, coins );
 
             Console.WriteLine("r={0}", result);
