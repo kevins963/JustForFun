@@ -79,9 +79,9 @@ MainClass::MainClass(void)
     simulator.Run();
 
     RunGraphs();
-	RunTrees();
-	RunRedMatch();
-	RunSorting();
+    RunTrees();
+    RunRedMatch();
+    RunSorting();
     RunPalandrome();
     RunCardGame();
     RunFib();
@@ -89,29 +89,29 @@ MainClass::MainClass(void)
     StringAlgorithms strAlg;
     strAlg.TestAll();
 
-	LinkedListAlgorithms llAlg;
-	llAlg.TestAll();
+    LinkedListAlgorithms llAlg;
+    llAlg.TestAll();
 
-	RecursionAlgorithms recursionAlgs;
-	recursionAlgs.TestAll();
+    RecursionAlgorithms recursionAlgs;
+    recursionAlgs.TestAll();
 
-	SortingAlgorithms sortingAlg;
-	sortingAlg.TestAll();
+    SortingAlgorithms sortingAlg;
+    sortingAlg.TestAll();
 
-	TreeGraphAlgorithms trAlg;
-	trAlg.TestAll();
+    TreeGraphAlgorithms trAlg;
+    trAlg.TestAll();
 
-	BitManipulationAlg bitManAlg;
-	bitManAlg.TestAll();
+    BitManipulationAlg bitManAlg;
+    bitManAlg.TestAll();
 
-	BucketSort bucketSort;
-	bucketSort.TestAll();
+    BucketSort bucketSort;
+    bucketSort.TestAll();
 
     CodeChef chefCode;
     chefCode.TestAll();
 
-	//undebug MathProblems mathProblems;
-	//mathProblems.TestAll();
+    //undebug MathProblems mathProblems;
+    //mathProblems.TestAll();
 
     RunFileIo();
 
@@ -127,17 +127,17 @@ MainClass::MainClass(void)
     SelectionAlgorithms selectionAlgorithms;
     selectionAlgorithms.TestAll();
 
-	Heapsort heapsort;
-	heapsort.Test();
+    Heapsort heapsort;
+    heapsort.Test();
 
-	DynamicProblems dynamicProblems;
-	dynamicProblems.TestAll();
+    DynamicProblems dynamicProblems;
+    dynamicProblems.TestAll();
 
-	BinarySearchProblems binarySearchProblems;
-	binarySearchProblems.TestAll();
+    BinarySearchProblems binarySearchProblems;
+    binarySearchProblems.TestAll();
 
-	GraphTypeProblems graphTypeProblems;
-	graphTypeProblems.TestAll();
+    GraphTypeProblems graphTypeProblems;
+    graphTypeProblems.TestAll();
 
     ClassCopyTest classCopyTest;
     classCopyTest.RunTests();
@@ -201,59 +201,59 @@ void MainClass::RunGraphs()
 
 void MainClass::RunTrees()
 {
-	int someArray[] = {1,6,4,2,8,0,5,6,3,4};
-	Tree tree;
+    int someArray[] = {1,6,4,2,8,0,5,6,3,4};
+    Tree tree;
 
-	for( int i = 0; i < 10; i++ )
-	{
-		tree.Insert(someArray[i]);
-		tree.PrintTree();
-	}
+    for( int i = 0; i < 10; i++ )
+    {
+        tree.Insert(someArray[i]);
+        tree.PrintTree();
+    }
 
-	
+    
 }
 
 
 void MainClass::RunRedMatch()
 {
-	RegMatch regMatch;
+    RegMatch regMatch;
 
-	cout << "Is Match = " << regMatch.IsMatch("ab\0", "ab\0") << endl;
-	cout << "Is Match = " << regMatch.IsMatch("ab\0", ".b\0") << endl;
-	cout << "Is Match = " << regMatch.IsMatch("ab\0", "*.\0") << endl;
-	cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*ab\0") << endl;
-	cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*b\0") << endl;;
-	cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*b\0") << endl;;
-	cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*ba\0") << endl;
-	cout << "Is Match = " << regMatch.IsMatch("aaab\0", "aaab\0") << endl;
-	cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*a*b\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("ab\0", "ab\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("ab\0", ".b\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("ab\0", "*.\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*ab\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*b\0") << endl;;
+    cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*b\0") << endl;;
+    cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*ba\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("aaab\0", "aaab\0") << endl;
+    cout << "Is Match = " << regMatch.IsMatch("aaab\0", "*a*b\0") << endl;
 
 
 }
 void MainClass::RunSorting()
 {
-	int array1[] = {0,2,6,1,5,3,9,7,4,8};
+    int array1[] = {0,2,6,1,5,3,9,7,4,8};
     int array2[] = {0,2,6,1,5,3,9,7,4,8};
     int array3[] = {0,2,6,1,5,3,9,7,4,8};
-	deque<int> unsortedData;
+    deque<int> unsortedData;
 
-	for(int i = 0; i < 10; i++)
-	{
-		unsortedData.push_back(array1[i]);
-	}
-	MergeSort mergeSort;
+    for(int i = 0; i < 10; i++)
+    {
+        unsortedData.push_back(array1[i]);
+    }
+    MergeSort mergeSort;
 
-	mergeSort.Sort(unsortedData);
+    mergeSort.Sort(unsortedData);
 
     QuickSort quicksort;
         cout << "Quick Started:" << endl;
     quicksort.Sort(array2, 0, 9);
         cout << "Quick End:" << endl;
 
-	cout << "Heapsort" << endl;
-	Heapsort heapsort;
-	heapsort.Sort( array3, 10 );
-	cout << "Heapsort end " << endl;
+    cout << "Heapsort" << endl;
+    Heapsort heapsort;
+    heapsort.Sort( array3, 10 );
+    cout << "Heapsort end " << endl;
 }
 
 MainClass::~MainClass(void)
@@ -301,6 +301,6 @@ int main()
 
     MainClass app;
 
-	cout << "Done";
+    cout << "Done";
     cin >> var;
 }

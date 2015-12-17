@@ -29,76 +29,76 @@ using namespace std;
 
 typedef struct memoryData
 {
-	struct memoryData( int addr, int sz )
-	{
-		address = addr;
-		size = sz;
-	}
+    struct memoryData( int addr, int sz )
+    {
+        address = addr;
+        size = sz;
+    }
 
-	int address;
-	int size;
+    int address;
+    int size;
 } sMemoryData;
 
 class Malloc
 {
 public:
-	Malloc();
-	~Malloc();
+    Malloc();
+    ~Malloc();
 
-	void SetSystemMemory( int memorySize )
-	{
-		_memorySize = memorySize;
-		_allocatedDataMap.clear();
-		
-		sMemoryData md = sMemoryData(0, 1000);
+    void SetSystemMemory( int memorySize )
+    {
+        _memorySize = memorySize;
+        _allocatedDataMap.clear();
+        
+        sMemoryData md = sMemoryData(0, 1000);
 
-		_allocatedDataMap[md.size] = md;
-	}
+        _allocatedDataMap[md.size] = md;
+    }
 
-	/*
-	Assumption, only continues data wanted
-	*/
-	int MyMalloc( int requestedSize )
-	{
-		if( _allocatedDataMap.count(requestedSize) > 0)
-		{
-			memoryData md = _allocatedDataMap[requestedSize].front();
-			_allocatedDataMap[requestedSize].pop_front();
-			_usedDataMap[md.address] = md;
+    /*
+    Assumption, only continues data wanted
+    */
+    int MyMalloc( int requestedSize )
+    {
+        if( _allocatedDataMap.count(requestedSize) > 0)
+        {
+            memoryData md = _allocatedDataMap[requestedSize].front();
+            _allocatedDataMap[requestedSize].pop_front();
+            _usedDataMap[md.address] = md;
 
-			return md.address
-		}
-		else
-		{
-			//find next largest
-			
-			for( map<int, deque<sMemoryData>>::iterator itr = _allocatedDataMap.begin();
-				 itr != _allocatedDataMap.end();
-				 itr++ )
-			{
-				if( itr->first > requestedSize )
-				{
-					sMemoryData currentMem = itr->second.front();
-					itr->second.pop_front();
+            return md.address
+        }
+        else
+        {
+            //find next largest
+            
+            for( map<int, deque<sMemoryData>>::iterator itr = _allocatedDataMap.begin();
+                 itr != _allocatedDataMap.end();
+                 itr++ )
+            {
+                if( itr->first > requestedSize )
+                {
+                    sMemoryData currentMem = itr->second.front();
+                    itr->second.pop_front();
 
-					sMemoryData newMem( (currentMem.address + requestedSize), (currentMem.size - requestedSize) );
-					
-					currentMem.size = requestedSize;
+                    sMemoryData newMem( (currentMem.address + requestedSize), (currentMem.size - requestedSize) );
+                    
+                    currentMem.size = requestedSize;
 
-					_allocatedDataMap[newMem.size].push_back(newMem);
-					
-					_usedDataMap[]
-				}
-			}
-		}
-	}
+                    _allocatedDataMap[newMem.size].push_back(newMem);
+                    
+                    _usedDataMap[]
+                }
+            }
+        }
+    }
 
 private:
 
 
-	int _memorySize;
-	map<int, deque<sMemoryData>> _allocatedDataMap;
-	map<int, sMemoryData> _usedDataMap;
+    int _memorySize;
+    map<int, deque<sMemoryData>> _allocatedDataMap;
+    map<int, sMemoryData> _usedDataMap;
 };
 
 Malloc::Malloc()

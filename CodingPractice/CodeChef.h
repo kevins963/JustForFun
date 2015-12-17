@@ -10,8 +10,8 @@ using namespace std;
 
 typedef struct knapsackItem
 {
-	int weight;
-	int cost;
+    int weight;
+    int cost;
 } sKnapsackItem;
 
 class CodeChef
@@ -88,45 +88,45 @@ vector<sKnapsackItem> CodeChef::FindMaxKnapsackCost( vector<sKnapsackItem> &item
     return vector<sKnapsackItem>();
 
     /*std::sort( items.begin(), items.end(), SortKnapsackItem );
-	
-	vector<vector<int>> costWeightMatrix;
+    
+    vector<vector<int>> costWeightMatrix;
 
-	for( int itemCount = 0; itemCount <= items.size() + 1; itemCount++ )
-	{
-		costWeightMatrix.push_back( vector<int>(maxWeight, 0) );
+    for( int itemCount = 0; itemCount <= items.size() + 1; itemCount++ )
+    {
+        costWeightMatrix.push_back( vector<int>(maxWeight, 0) );
 
-		for( int currentWeight = 0; currentWeight <= maxWeight; currentWeight++ )
-		{
-			if( itemCount == 0 || currentWeight == 0 )
-			{
-				if( items[itemCount-1].weight <= currentWeight )
-				{
-					costWeightMatrix[itemCount][currentWeight] = max( items[itemCount-1][currentWeight] + costWeightMatrix[itemCount-1][currentWeight])
-				}
-				else
-				{
-					costWeightMatrix[itemCount][currentWeight] = costWeightMatrix[i-1][currentWeight];
-				}
-			}
-		}
-	}
+        for( int currentWeight = 0; currentWeight <= maxWeight; currentWeight++ )
+        {
+            if( itemCount == 0 || currentWeight == 0 )
+            {
+                if( items[itemCount-1].weight <= currentWeight )
+                {
+                    costWeightMatrix[itemCount][currentWeight] = max( items[itemCount-1][currentWeight] + costWeightMatrix[itemCount-1][currentWeight])
+                }
+                else
+                {
+                    costWeightMatrix[itemCount][currentWeight] = costWeightMatrix[i-1][currentWeight];
+                }
+            }
+        }
+    }
 
-	if(maxWeight <= 0 || currentIndex < 0 || currentIndex >= items.size() || items[currentIndex].weight > maxWeight)
-		return vector<sKnapsackItem>();
+    if(maxWeight <= 0 || currentIndex < 0 || currentIndex >= items.size() || items[currentIndex].weight > maxWeight)
+        return vector<sKnapsackItem>();
 
-	vector<sKnapsackItem> knapsack = FindMaxKnapsackCost( items, maxWeight, currentIndex + 1);
-	vector<sKnapsackItem> knapsackCurrent = FindMaxKnapsackCost( items, maxWeight - items[currentIndex].weight, currentIndex + 1)
-	knapsackCurrent.push_back( items[currentIndex] );
+    vector<sKnapsackItem> knapsack = FindMaxKnapsackCost( items, maxWeight, currentIndex + 1);
+    vector<sKnapsackItem> knapsackCurrent = FindMaxKnapsackCost( items, maxWeight - items[currentIndex].weight, currentIndex + 1)
+    knapsackCurrent.push_back( items[currentIndex] );
 
 
-	return the max knap sack
-	vector<sKnapsackItem> knapsack;
+    return the max knap sack
+    vector<sKnapsackItem> knapsack;
 
-	
-	int weight = 0;
-	
+    
+    int weight = 0;
+    
 
-	return items;
+    return items;
     
 }
 */

@@ -31,7 +31,7 @@ void PrintArray( vector<int>& v1, bool newline )
 {
     cout << "[";
 
-	for( int i = 0; i < v1.size(); i++ )
+    for( int i = 0; i < v1.size(); i++ )
     {
         cout << v1[i] << ",";
     }
@@ -68,13 +68,13 @@ void PrintMatrix( int* matrix, int width, int height )
 
     for( int i = 0; i < width; i++ )
     {
-		cout << "[";
+        cout << "[";
 
-		for( int j = 0; j < height; j++ )
-		{
-			cout << matrix[GetMatrixIndex( i, j, width)] << ",";
-		}
-		cout << "]";
+        for( int j = 0; j < height; j++ )
+        {
+            cout << matrix[GetMatrixIndex( i, j, width)] << ",";
+        }
+        cout << "]";
         cout << endl;
 
     }
@@ -83,5 +83,5 @@ void PrintMatrix( int* matrix, int width, int height )
 
 int GetMatrixIndex( int row, int col, int maxCol )
 {
-	return row + col * maxCol;
+    return row + col * maxCol;
 }

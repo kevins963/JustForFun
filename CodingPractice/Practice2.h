@@ -4,10 +4,10 @@
 class Practice2
 {
 public:
-	void TestAll();
+    void TestAll();
 
 private:
-	
+    
 
 };
 #endif // Practice2_h__

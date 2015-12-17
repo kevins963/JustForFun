@@ -87,7 +87,7 @@ public:
             ++i;
         }
 
-		return nullptr;
+        return nullptr;
     }
 
     /*
@@ -144,7 +144,7 @@ public:
 
         cout << endl;
 
-		return nullptr;
+        return nullptr;
     }
 
     GraphNode* FindByData( int dataSearch )

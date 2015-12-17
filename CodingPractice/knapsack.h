@@ -8,14 +8,14 @@ using namespace std;
 
 typedef struct costWeight
 {
-	int32_t cost;
-	int32_t weight;
+    int32_t cost;
+    int32_t weight;
 
-	costWeight(int32_t c, int32_t w)
-	{
-		cost = c;
-		weight = w;
-	}
+    costWeight(int32_t c, int32_t w)
+    {
+        cost = c;
+        weight = w;
+    }
 }
 sCostWeight;
 
@@ -23,14 +23,14 @@ class Knapsack
 {
 
 public:
-	Knapsack();
-	~Knapsack();
+    Knapsack();
+    ~Knapsack();
 
 private:
-	void TestAll();
+    void TestAll();
 
-	void TestMinimizeCostWeight();
-	void MinimizeCostWeight( const int32_t targetWeight, const sCostWeight itemList );
+    void TestMinimizeCostWeight();
+    void MinimizeCostWeight( const int32_t targetWeight, const sCostWeight itemList );
 };
 
 Knapsack::Knapsack()
@@ -48,10 +48,10 @@ void Knapsack::TestAll()
 
 void Knapsack::TestMinimizeCostWeight()
 {
-	vector<sCostWeight> costList;
-	costList.push_back(sCostWeight(2, 2));
-	costList.push_back(sCostWeight(5, 5));
-	costList.push_back(sCostWeight(10, 10));
+    vector<sCostWeight> costList;
+    costList.push_back(sCostWeight(2, 2));
+    costList.push_back(sCostWeight(5, 5));
+    costList.push_back(sCostWeight(10, 10));
 
 }
 
@@ -65,9 +65,9 @@ This is a type of knapsack problem
 */
 void Knapsack::MinimizeCostWeight( const int32_t targetWeight, const sCostWeight itemList )
 {
-	/* solve by dynamic programming */
-	/* sort items by weight */
-	/* recursively call problem */
+    /* solve by dynamic programming */
+    /* sort items by weight */
+    /* recursively call problem */
 }
 
 #endif // knapsack_h__

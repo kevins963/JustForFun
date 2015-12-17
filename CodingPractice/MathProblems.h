@@ -9,34 +9,34 @@ using namespace std;
 class MathProblems
 {
 public:
-	MathProblems(){};
-	~MathProblems(){};
+    MathProblems(){};
+    ~MathProblems(){};
 
-	void TestAll();
+    void TestAll();
 private:
-	void TestSquareRoot();
-	double SquareRoot( double value );
+    void TestSquareRoot();
+    double SquareRoot( double value );
 };
 
 void MathProblems::TestAll()
 {
-	TestSquareRoot();
+    TestSquareRoot();
 }
 
 void MathProblems::TestSquareRoot()
 {
-	vector<std::pair<double,double>> test;
+    vector<std::pair<double,double>> test;
 
-	test.push_back( make_pair(4.0f, 2.0f));
-	test.push_back( make_pair(100.0f, 10.0f));
-	test.push_back( make_pair(10.0f, 3.34f));
-	cout << "************TESTING SQUARE***************\n";
+    test.push_back( make_pair(4.0f, 2.0f));
+    test.push_back( make_pair(100.0f, 10.0f));
+    test.push_back( make_pair(10.0f, 3.34f));
+    cout << "************TESTING SQUARE***************\n";
 
-	for( auto itr = test.begin(); itr < test.end(); ++itr )
-	{
-		cout << " test = " << itr->first << " expected = " << itr->second << " actual = ";
-		cout << SquareRoot( itr->first ) << "\n";
-	}
+    for( auto itr = test.begin(); itr < test.end(); ++itr )
+    {
+        cout << " test = " << itr->first << " expected = " << itr->second << " actual = ";
+        cout << SquareRoot( itr->first ) << "\n";
+    }
 }
 
 /*
@@ -45,30 +45,30 @@ min = 0, max =value, square root is somewhere inbetween
 */
 double MathProblems::SquareRoot(double value)
 {
-	double min = 0;
-	double max = value;
-	double currentValue = 0;
-	double difference = value;
+    double min = 0;
+    double max = value;
+    double currentValue = 0;
+    double difference = value;
 
-	while( difference > MAX_DIFFERENCE ||
-		   difference < -MAX_DIFFERENCE )
-	{
+    while( difference > MAX_DIFFERENCE ||
+           difference < -MAX_DIFFERENCE )
+    {
 
-		if( difference > 0 )
-		{
-			min = currentValue;
-			currentValue = ( max + currentValue ) / 2;
-		}
-		else
-		{
-			max = currentValue;
-			currentValue = ( currentValue + min ) / 2;
-		}
+        if( difference > 0 )
+        {
+            min = currentValue;
+            currentValue = ( max + currentValue ) / 2;
+        }
+        else
+        {
+            max = currentValue;
+            currentValue = ( currentValue + min ) / 2;
+        }
 
-		int squaredValue = currentValue * currentValue;
-		difference = value - squaredValue;
+        int squaredValue = currentValue * currentValue;
+        difference = value - squaredValue;
 
-	}
+    }
 
-	return currentValue;
+    return currentValue;
 }

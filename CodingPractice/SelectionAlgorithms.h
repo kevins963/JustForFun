@@ -116,7 +116,7 @@ int SelectionAlgorithms::QuickSelection( int* inArray, int kthMinValue, int left
 int SelectionAlgorithms::QuickSelectionPivotSort( int* inArray, int leftIndex, int rightIndex, int indexToPivot )
 {
     //Put all values less than pivotIndex to left all else to right
-	//Put pivit in last index
+    //Put pivit in last index
     int temp = inArray[indexToPivot];
     inArray[indexToPivot] = inArray[rightIndex];
     inArray[rightIndex] = temp;
