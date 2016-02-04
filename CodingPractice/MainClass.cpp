@@ -31,6 +31,7 @@
 #include "BinarySearchProblems.h"
 #include "GraphTypeProblems.h"
 #include "ClassOverrides.h"
+#include "UnionFindDisjointSet.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -141,6 +142,8 @@ MainClass::MainClass(void)
 
     ClassCopyTest classCopyTest;
     classCopyTest.RunTests();
+
+	UnionFindDisjointSet().Test();
 }
 
 void MainClass::RunFileIo()

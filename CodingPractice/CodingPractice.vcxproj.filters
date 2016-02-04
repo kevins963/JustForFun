@@ -63,6 +63,7 @@
     <ClInclude Include="BinarySearchProblems.h" />
     <ClInclude Include="GraphTypeProblems.h" />
     <ClInclude Include="ClassOverrides.h" />
+    <ClInclude Include="UnionFindDisjointSet.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codechef">

@@ -116,6 +116,7 @@
     <ClInclude Include="Tree.h" />
     <ClInclude Include="TreeGraphAlgorithms.h" />
     <ClInclude Include="TreeNode.h" />
+    <ClInclude Include="UnionFindDisjointSet.h" />
     <ClInclude Include="Utilities.h" />
     <ClInclude Include="WarGame.h" />
   </ItemGroup>

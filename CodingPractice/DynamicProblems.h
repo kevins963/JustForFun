@@ -40,7 +40,7 @@ void DynamicProblems::TestAll(void)
 {
     TestFindSmallestNumberCoins();
     TestMaximizeRodCut();
-    TestLongestSubsequenceLessThanX();
+    //TestLongestSubsequenceLessThanX();
 }
 
 void DynamicProblems::TestFindSmallestNumberCoins(void)
@@ -181,7 +181,7 @@ int DynamicProblems::MaximizeRodCut(vector<sRodCutPrices> & rodCutPrices, int le
     return maxProfits[ length ];
 }
 
-void TestLongestSubsequenceLessThanX();
+//void TestLongestSubsequenceLessThanX();
 /*
 This function will find the longest subsequence whose value is less than x
 
@@ -194,4 +194,4 @@ current total   0   5   3   5   4   5
 pointer         -   0   0   2   0   1
 Total Seq       1   2   2   3   1   2
 */
-void LongestSubsequenceLessThanX( int inputArray, int maxValue );
+//void LongestSubsequenceLessThanX( int inputArray, int maxValue );

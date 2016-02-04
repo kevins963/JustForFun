@@ -65,11 +65,14 @@ int BinarySearchProblems::IsValueInSortedArray(vector<int> & someArray, int find
 {
     int low = 0;
     int high = someArray.size() - 1;
-    int mid = (high + low) / 2;
+	int mid;// = (high + low) / 2;
 
     while( high >= low )
     {
-        //found
+
+		mid = (low + high) / 2;
+		
+		//found
         if( someArray[mid] == findValue )
         {
             return mid;
@@ -79,14 +82,12 @@ int BinarySearchProblems::IsValueInSortedArray(vector<int> & someArray, int find
         else if( someArray[mid] > findValue )
         {
             high = mid - 1;
-            mid = (low + high) / 2;
         }
 
         // between mid and high
         else
         {
             low = mid + 1;
-            mid = ( low + high ) / 2;
         }
     }
 

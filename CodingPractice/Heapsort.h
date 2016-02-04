@@ -12,6 +12,8 @@ public:
 
     void PerculateUpMax( int * inArray, int index, int size );
     void PerculateDownMax( int * inArray, int index, int size );
+
+	int FindKthLargestValue( int * inArray, int size, int kthValue );
 };
 
 void Heapsort::Sort( int * inArray, int size )
@@ -41,9 +43,9 @@ void Heapsort::Heapify( int * inArray, int size )
     //foreach item in array "Add" it to the heap and purculate up until it is in correct place
     //Heap max heap mean all items above are greater
 
-    for( int i = 0; i < size; i++ )
+    for( int i = ( size / 2 ) - 1; i >= 0; i-- )
     {
-        PerculateUpMax( inArray, i, size );
+        PerculateDownMax( inArray, i, size );
     }
 }
 
@@ -111,14 +113,51 @@ void Heapsort::PerculateDownMax(int * inArray, int index, int size)
 
 }
 
+int Heapsort::FindKthLargestValue( int * inArray, int size, int kthValue )
+{
+	//we want to make a heap of size k, we can either create new array
+	//or use existing one, max heap if value is less than current max
+	//swap max value with new value, and heapify
+
+	Heapify(inArray, kthValue);
+
+	PrintArray(inArray, 0, 20, true);
+
+	for (int i = kthValue; i < size; i++)
+	{
+		if (inArray[i] < inArray[0])
+		{
+			//swap
+			int temp = inArray[i];
+			inArray[i] = inArray[0];
+			inArray[0] = temp;
+		}
+		PerculateDownMax(inArray, 0, kthValue);
+
+		PrintArray(inArray, 0, 20, true);
+	}
+
+	return inArray[0];
+}
+
 void Heapsort::Test(void)
 {
 
     cout << "***********TEST HEAP SORT ********** " << endl;
-    int inputArray[] = {9,0,5,1,3,4,6,8,7,2,2,1,0,7,3,8,6,4,9,5};
+	int inputArray[] = { 9,0,5,1,3,4,6,8,7,2,2,1,0,7,3,8,6,4,9,5 };
+	int inputArray2[] = { 9,0,5,1,3,4,6,8,7,2,2,1,0,7,3,8,6,4,9,5 };
 
     Sort( inputArray, 20 );
 
     PrintArray( inputArray, 0, 20, true );
     
+
+	cout << "***********TEST HEAP FIND KTH LARGEST VALUE**************" << endl;
+
+	FindKthLargestValue(inputArray2, 20, 6);
+
+	PrintArray(inputArray2, 0, 20, true);
+
 }
+
+
