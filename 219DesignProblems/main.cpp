@@ -143,19 +143,19 @@ double FindSqrt2( double value )
     double root = value;
     double test = root * root;
 
-    while( fabs( test - value ) > EPS )
-    {
-        if( test >= value )
-        {
-            root /= 2;
-        }
-        else
-        {
-            root *= 1.5;
-        }
-        test = root * root;
-        itrCount++;
-    }
+    //while( fabs( test - value ) > EPS )
+    //{
+    //    if( test >= value )
+    //    {
+    //        root /= 2;
+    //    }
+    //    else
+    //    {
+    //        root *= 1.5;
+    //    }
+    //    test = root * root;
+    //    itrCount++;
+    //}
 
     cout << "Runtime = " << itrCount << endl;
 

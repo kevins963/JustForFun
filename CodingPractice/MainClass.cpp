@@ -31,6 +31,8 @@
 #include "BinarySearchProblems.h"
 #include "GraphTypeProblems.h"
 #include "ClassOverrides.h"
+#include "PascalsTriangle.h"
+#include "KMPStringSearch.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -141,6 +143,11 @@ MainClass::MainClass(void)
 
     ClassCopyTest classCopyTest;
     classCopyTest.RunTests();
+
+    PascalsTriangle pascalsTriangle;
+    pascalsTriangle.Test();
+
+    KmpStringSearch().Test();
 }
 
 void MainClass::RunFileIo()
