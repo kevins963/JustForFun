@@ -63,7 +63,10 @@
     <ClInclude Include="BinarySearchProblems.h" />
     <ClInclude Include="GraphTypeProblems.h" />
     <ClInclude Include="ClassOverrides.h" />
-    <ClInclude Include="UnionFindDisjointSet.h" />
+    <ClInclude Include="MaxSumOfSequence.h" />
+    <ClInclude Include="PascalsTriangle.h" />
+    <ClInclude Include="LargestNumFromArray.h" />
+    <ClInclude Include="KMPStringSearch.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codechef">

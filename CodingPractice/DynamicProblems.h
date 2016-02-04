@@ -162,7 +162,7 @@ int DynamicProblems::MaximizeRodCut(vector<sRodCutPrices> & rodCutPrices, int le
 {
     //want to include zero in price array
     vector<int> maxProfits = vector<int>( length + 1, 0 );
-
+   //vector<int>();
     for( int curNumOfCuts = 1; curNumOfCuts < length + 1; curNumOfCuts++ )
     {
         int maxProfit = 0;

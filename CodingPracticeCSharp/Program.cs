@@ -32,6 +32,7 @@ namespace CodingPracticeCSharp
             KnapsackAlg knapsackalg = new KnapsackAlg();
             knapsackalg.RunTest();
 
+            
         }
     }
 }
