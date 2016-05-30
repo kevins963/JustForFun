@@ -71,19 +71,15 @@ vector<int> PascalsTriangle::getRow( int A )
 vector<int> PascalsTriangle::CreatePascalsRecursive( int rows )
 {
 
-    //create vector with correct number of rows;
-    int cellCount = 0;
-    for( int i = 0; i < rows; i++ )
-    {
-        cellCount += (i+1);
-    }
-    
-    vector<int> pascalsTriangle( cellCount, 0 );
+    ////create vector with correct number of rows;
+    //int cellCount = 0;
+    //for( int i = 0; i < rows; i++ )
+    //{
+    //    cellCount += (i+1);
+    //}
+    //
+    //vector<int> pascalsTriangle( cellCount, 0 );
 
-    PascalsRecursive( pascalsTriangle, 0, -1 );
-}
-
-vector<int> PascalsTriangle::PascalsRecursive( vector<int> )
-{
-
+    //PascalsRecursive( pascalsTriangle, 0, -1 );
+	return vector<int>();
 }

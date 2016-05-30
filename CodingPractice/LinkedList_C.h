@@ -18,7 +18,7 @@ class LinkedList_C
 public:
     void TestAll();
 
-private:
+//private:
     static linked_list* create_node( int16_t data );
     static void push_back( linked_list ** listNode, int16_t data );
     static void push_back_single_pointer( linked_list * listNode, int16_t data );

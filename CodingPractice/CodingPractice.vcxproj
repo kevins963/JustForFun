@@ -98,6 +98,7 @@
     <ClInclude Include="LinkedListAlgorithms.h" />
     <ClInclude Include="LinkedList_C.h" />
     <ClInclude Include="ListNode.h" />
+    <ClInclude Include="LRUCache.h" />
     <ClInclude Include="MainClass.h" />
     <ClInclude Include="Malloc.h" />
     <ClInclude Include="MathProblems.h" />
@@ -113,8 +114,10 @@
     <ClInclude Include="QuickSort.h" />
     <ClInclude Include="RecursionAlgorithms.h" />
     <ClInclude Include="RegMatch.h" />
+    <ClInclude Include="ReverseLinkedList.h" />
     <ClInclude Include="SelectionAlgorithms.h" />
     <ClInclude Include="Simulator.h" />
+    <ClInclude Include="SnapChatQuestion.h" />
     <ClInclude Include="SortingAlgorithms.h" />
     <ClInclude Include="StringAlgorithms.h" />
     <ClInclude Include="Tree.h" />

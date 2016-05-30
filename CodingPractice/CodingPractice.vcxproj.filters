@@ -67,6 +67,10 @@
     <ClInclude Include="PascalsTriangle.h" />
     <ClInclude Include="LargestNumFromArray.h" />
     <ClInclude Include="KMPStringSearch.h" />
+    <ClInclude Include="UnionFindDisjointSet.h" />
+    <ClInclude Include="SnapChatQuestion.h" />
+    <ClInclude Include="ReverseLinkedList.h" />
+    <ClInclude Include="LRUCache.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Codechef">

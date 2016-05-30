@@ -33,6 +33,9 @@
 #include "ClassOverrides.h"
 #include "PascalsTriangle.h"
 #include "KMPStringSearch.h"
+#include "SnapChatQuestion.h"
+#include "ReverseLinkedList.h"
+#include "LRUCache.h"
 //#include "MathProblems.h"
 
 using namespace std;
@@ -148,6 +151,12 @@ MainClass::MainClass(void)
     pascalsTriangle.Test();
 
     KmpStringSearch().Test();
+
+	SnapChatQuestion().Test();
+
+	ReverseLinkedList().Test();
+
+	LRUCache().Test();
 }
 
 void MainClass::RunFileIo()
